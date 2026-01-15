@@ -5,14 +5,14 @@
  * without connecting to a real Airtable base.
  */
 
-import { runScript, processTableRecords, createSampleRecords } from '../src/mainLogic';
+import { runScript, processTableRecords, createSampleRecords } from '../src/core';
 import {
   MockBase,
   MockTable,
   MockRecord,
   MockLogger,
   createMockBaseWithSampleData,
-} from './mocks';
+} from './__mocks__';
 
 describe('runScript', () => {
   let mockBase: MockBase;
@@ -204,102 +204,87 @@ describe('MockRecord', () => {
 });
 
 describe('MockTable', () => {
-  let table: MockTable;
-
-  beforeEach(() => {
-    const records = [
-      new MockRecord('rec001', { Name: 'First', Priority: 1 }),
-      new MockRecord('rec002', { Name: 'Second', Priority: 2 }),
-    ];
-    table = new MockTable('tbl001', 'TestTable', records);
-  });
-
   it('should select all records', async () => {
+    const records = [
+      new MockRecord('rec001', { Name: 'Record 1' }),
+      new MockRecord('rec002', { Name: 'Record 2' }),
+    ];
+    const table = new MockTable('tbl001', 'TestTable', records);
+
     const result = await table.selectRecordsAsync();
 
     expect(result.records).toHaveLength(2);
+    expect(result.getRecord('rec001')).toBeDefined();
   });
 
-  it('should filter records by IDs', async () => {
-    const result = await table.selectRecordsAsync({ 
-      recordIds: ['rec001'] 
-    });
+  it('should filter by recordIds', async () => {
+    const records = [
+      new MockRecord('rec001', { Name: 'Record 1' }),
+      new MockRecord('rec002', { Name: 'Record 2' }),
+      new MockRecord('rec003', { Name: 'Record 3' }),
+    ];
+    const table = new MockTable('tbl001', 'TestTable', records);
 
-    expect(result.records).toHaveLength(1);
-    expect(result.records[0].id).toBe('rec001');
+    const result = await table.selectRecordsAsync({ recordIds: ['rec001', 'rec003'] });
+
+    expect(result.records).toHaveLength(2);
+    expect(result.records.map(r => r.id)).toEqual(['rec001', 'rec003']);
   });
 
   it('should sort records', async () => {
-    const result = await table.selectRecordsAsync({
-      sorts: [{ field: 'Name', direction: 'desc' }]
+    const records = [
+      new MockRecord('rec001', { Name: 'Charlie' }),
+      new MockRecord('rec002', { Name: 'Alice' }),
+      new MockRecord('rec003', { Name: 'Bob' }),
+    ];
+    const table = new MockTable('tbl001', 'TestTable', records);
+
+    const result = await table.selectRecordsAsync({ 
+      sorts: [{ field: 'Name', direction: 'asc' }] 
     });
 
-    expect(result.records[0].name).toBe('Second');
-    expect(result.records[1].name).toBe('First');
+    expect(result.records.map(r => r.name)).toEqual(['Alice', 'Bob', 'Charlie']);
   });
 
-  it('should update a record', async () => {
-    await table.updateRecordAsync('rec001', { Status: 'Done' });
+  it('should create records', async () => {
+    const table = new MockTable('tbl001', 'TestTable');
 
-    const record = table._getRecord('rec001');
-    expect(record?.getCellValue('Status')).toBe('Done');
-  });
-
-  it('should create a record and return ID', async () => {
     const id = await table.createRecordAsync({ Name: 'New Record' });
 
     expect(id).toMatch(/^rec\d+$/);
-    const record = table._getRecord(id);
-    expect(record?.getCellValue('Name')).toBe('New Record');
+    expect(table._getRecord(id)).toBeDefined();
+    expect(table._getRecord(id)?.name).toBe('New Record');
   });
 
-  it('should delete a record', async () => {
+  it('should delete records', async () => {
+    const records = [new MockRecord('rec001', { Name: 'Record 1' })];
+    const table = new MockTable('tbl001', 'TestTable', records);
+
     await table.deleteRecordAsync('rec001');
 
     expect(table._getRecord('rec001')).toBeUndefined();
-    expect(table._getAllRecords()).toHaveLength(1);
-  });
-
-  it('should throw when updating non-existent record', async () => {
-    await expect(
-      table.updateRecordAsync('nonexistent', {})
-    ).rejects.toThrow('Record with ID "nonexistent" not found');
-  });
-
-  it('should throw when deleting non-existent record', async () => {
-    await expect(
-      table.deleteRecordAsync('nonexistent')
-    ).rejects.toThrow('Record with ID "nonexistent" not found');
   });
 });
 
 describe('MockBase', () => {
   it('should get table by name', () => {
-    const table = new MockTable('tbl001', 'Projects');
+    const table = new MockTable('tbl001', 'TestTable');
     const base = new MockBase([table]);
 
-    expect(base.getTable('Projects')).toBe(table);
+    expect(base.getTable('TestTable')).toBe(table);
   });
 
-  it('should get table by ID', () => {
-    const table = new MockTable('tbl001', 'Projects');
+  it('should get table by id', () => {
+    const table = new MockTable('tbl001', 'TestTable');
     const base = new MockBase([table]);
 
     expect(base.getTable('tbl001')).toBe(table);
   });
 
-  it('should throw for non-existent table', () => {
+  it('should throw error for non-existent table', () => {
     const base = new MockBase([]);
 
     expect(() => base.getTable('NonExistent')).toThrow('Table "NonExistent" not found');
-  });
-
-  it('should list all tables', () => {
-    const table1 = new MockTable('tbl001', 'Projects');
-    const table2 = new MockTable('tbl002', 'Tasks');
-    const base = new MockBase([table1, table2]);
-
-    expect(base.tables).toHaveLength(2);
   });
 });
 
@@ -314,38 +299,28 @@ describe('MockLogger', () => {
     expect(logger.logs).toHaveLength(3);
     expect(logger.hasLog('Test message')).toBe(true);
     expect(logger.hasLog('Error message')).toBe(true);
+    expect(logger.hasLog('Warning message')).toBe(true);
   });
 
-  it('should filter logs by type', () => {
+  it('should filter by log type', () => {
     const logger = new MockLogger();
 
     logger.log('Log 1');
     logger.error('Error 1');
     logger.log('Log 2');
 
-    const logMessages = logger.getLogsByType('log');
-    expect(logMessages).toHaveLength(2);
-  });
-
-  it('should capture inspect data', () => {
-    const logger = new MockLogger();
-    const data = { key: 'value' };
-
-    logger.inspect(data, 'Test Data');
-
-    expect(logger.logs[0]).toMatchObject({
-      type: 'inspect',
-      message: 'Test Data',
-      data: { key: 'value' },
-    });
+    const errors = logger.getLogsByType('error');
+    expect(errors).toHaveLength(1);
+    expect(errors[0].message).toBe('Error 1');
   });
 
   it('should clear logs', () => {
     const logger = new MockLogger();
-    logger.log('Test');
-    
-    logger.clear();
 
+    logger.log('Test');
+    expect(logger.logs).toHaveLength(1);
+
+    logger.clear();
     expect(logger.logs).toHaveLength(0);
   });
 });

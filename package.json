@@ -6,10 +6,10 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "esbuild src/index.ts --bundle --outfile=dist/script.js --format=iife --target=es2020",
-    "watch": "esbuild src/index.ts --bundle --outfile=dist/script.js --format=iife --target=es2020 --watch",
-    "local": "npx ts-node src/local.ts",
-    "local:watch": "npx ts-node-dev --respawn src/local.ts"
+    "build": "esbuild src/core/entry.ts --bundle --outfile=dist/script.js --format=iife --target=es2020",
+    "watch": "esbuild src/core/entry.ts --bundle --outfile=dist/script.js --format=iife --target=es2020 --watch",
+    "local": "npx ts-node src/core/local.ts",
+    "local:watch": "npx ts-node-dev --respawn src/core/local.ts"
   },
   "keywords": [
     "airtable",

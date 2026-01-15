@@ -38,13 +38,22 @@ export interface IAirtableBase {
 export interface IAirtableTable {
   id: string;
   name: string;
-  selectRecordsAsync(options?: RecordSelectOptions): Promise<IAirtableQueryResult>;
-  updateRecordAsync(recordOrId: string | IAirtableRecord, fields: FieldSet): Promise<void>;
-  updateRecordsAsync(records: Array<{ id: string; fields: FieldSet }>): Promise<void>;
+  selectRecordsAsync(
+    options?: RecordSelectOptions
+  ): Promise<IAirtableQueryResult>;
+  updateRecordAsync(
+    recordOrId: string | IAirtableRecord,
+    fields: FieldSet
+  ): Promise<void>;
+  updateRecordsAsync(
+    records: Array<{ id: string; fields: FieldSet }>
+  ): Promise<void>;
   createRecordAsync(fields: FieldSet): Promise<string>;
   createRecordsAsync(records: Array<{ fields: FieldSet }>): Promise<string[]>;
   deleteRecordAsync(recordOrId: string | IAirtableRecord): Promise<void>;
-  deleteRecordsAsync(recordsOrIds: Array<string | IAirtableRecord>): Promise<void>;
+  deleteRecordsAsync(
+    recordsOrIds: Array<string | IAirtableRecord>
+  ): Promise<void>;
   getField(nameOrId: string): IAirtableField;
   fields: IAirtableField[];
 }
@@ -87,6 +96,6 @@ export type FieldSet = Record<string, unknown>;
  */
 export interface RecordSelectOptions {
   fields?: string[];
-  sorts?: Array<{ field: string; direction?: 'asc' | 'desc' }>;
+  sorts?: Array<{ field: string; direction?: "asc" | "desc" }>;
   recordIds?: string[];
 }

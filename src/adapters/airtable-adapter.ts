@@ -1,17 +1,21 @@
 /**
  * Airtable SDK Adapter
- * 
+ *
  * This adapter wraps the official Airtable.js SDK to conform to our
  * IAirtable* interfaces, allowing you to run scripts locally against
  * a real Airtable base.
- * 
+ *
  * Usage:
  *   1. Set AIRTABLE_API_KEY and AIRTABLE_BASE_ID in .env
  *   2. Run: npm run local
  */
 
-import Airtable from 'airtable';
-import type { FieldSet as AirtableFieldSet, Records, Record as AirtableRecord } from 'airtable';
+import Airtable from "airtable";
+import type {
+  FieldSet as AirtableFieldSet,
+  Records,
+  Record as AirtableRecord,
+} from "airtable";
 import {
   IAirtableBase,
   IAirtableTable,
@@ -20,7 +24,7 @@ import {
   IAirtableQueryResult,
   FieldSet,
   RecordSelectOptions,
-} from './interfaces';
+} from "../types";
 
 /**
  * Adapter for Airtable SDK Record
@@ -34,7 +38,7 @@ class AirtableRecordAdapter implements IAirtableRecord {
     this.record = record;
     this.id = record.id;
     // Use the first field or 'Name' field as the record name
-    this.name = (record.get('Name') as string) || record.id;
+    this.name = (record.get("Name") as string) || record.id;
   }
 
   getCellValue(fieldNameOrId: string): unknown {
@@ -44,9 +48,9 @@ class AirtableRecordAdapter implements IAirtableRecord {
   getCellValueAsString(fieldNameOrId: string): string {
     const value = this.getCellValue(fieldNameOrId);
     if (value === null || value === undefined) {
-      return '';
+      return "";
     }
-    if (typeof value === 'object') {
+    if (typeof value === "object") {
       return JSON.stringify(value);
     }
     return String(value);
@@ -61,8 +65,8 @@ class AirtableQueryResultAdapter implements IAirtableQueryResult {
   private recordMap: Map<string, IAirtableRecord>;
 
   constructor(records: Records<AirtableFieldSet>) {
-    this.records = records.map(r => new AirtableRecordAdapter(r));
-    this.recordMap = new Map(this.records.map(r => [r.id, r]));
+    this.records = records.map((r) => new AirtableRecordAdapter(r));
+    this.recordMap = new Map(this.records.map((r) => [r.id, r]));
   }
 
   getRecord(recordId: string): IAirtableRecord | undefined {
@@ -85,7 +89,9 @@ class AirtableTableAdapter implements IAirtableTable {
     this.table = airtableBase(tableName);
   }
 
-  async selectRecordsAsync(options?: RecordSelectOptions): Promise<IAirtableQueryResult> {
+  async selectRecordsAsync(
+    options?: RecordSelectOptions
+  ): Promise<IAirtableQueryResult> {
     const selectOptions: Airtable.SelectOptions<AirtableFieldSet> = {};
 
     if (options?.fields) {
@@ -93,9 +99,9 @@ class AirtableTableAdapter implements IAirtableTable {
     }
 
     if (options?.sorts) {
-      selectOptions.sort = options.sorts.map(s => ({
+      selectOptions.sort = options.sorts.map((s) => ({
         field: s.field,
-        direction: s.direction || 'asc',
+        direction: s.direction || "asc",
       }));
     }
 
@@ -105,23 +111,28 @@ class AirtableTableAdapter implements IAirtableTable {
     // Filter by recordIds if specified (SDK doesn't support this directly)
     if (options?.recordIds) {
       const idSet = new Set(options.recordIds);
-      const filtered = records.filter(r => idSet.has(r.id));
+      const filtered = records.filter((r) => idSet.has(r.id));
       return new AirtableQueryResultAdapter(filtered);
     }
 
     return new AirtableQueryResultAdapter(records);
   }
 
-  async updateRecordAsync(recordOrId: string | IAirtableRecord, fields: FieldSet): Promise<void> {
-    const id = typeof recordOrId === 'string' ? recordOrId : recordOrId.id;
+  async updateRecordAsync(
+    recordOrId: string | IAirtableRecord,
+    fields: FieldSet
+  ): Promise<void> {
+    const id = typeof recordOrId === "string" ? recordOrId : recordOrId.id;
     await this.table.update(id, fields as AirtableFieldSet);
   }
 
-  async updateRecordsAsync(records: Array<{ id: string; fields: FieldSet }>): Promise<void> {
+  async updateRecordsAsync(
+    records: Array<{ id: string; fields: FieldSet }>
+  ): Promise<void> {
     // Airtable API allows max 10 records per batch
     const batchSize = 10;
     for (let i = 0; i < records.length; i += batchSize) {
-      const batch = records.slice(i, i + batchSize).map(r => ({
+      const batch = records.slice(i, i + batchSize).map((r) => ({
         id: r.id,
         fields: r.fields as AirtableFieldSet,
       }));
@@ -134,29 +145,33 @@ class AirtableTableAdapter implements IAirtableTable {
     return record.id;
   }
 
-  async createRecordsAsync(records: Array<{ fields: FieldSet }>): Promise<string[]> {
+  async createRecordsAsync(
+    records: Array<{ fields: FieldSet }>
+  ): Promise<string[]> {
     // Airtable API allows max 10 records per batch
     const batchSize = 10;
     const createdIds: string[] = [];
 
     for (let i = 0; i < records.length; i += batchSize) {
-      const batch = records.slice(i, i + batchSize).map(r => ({
+      const batch = records.slice(i, i + batchSize).map((r) => ({
         fields: r.fields as AirtableFieldSet,
       }));
       const created = await this.table.create(batch);
-      createdIds.push(...created.map(r => r.id));
+      createdIds.push(...created.map((r) => r.id));
     }
 
     return createdIds;
   }
 
   async deleteRecordAsync(recordOrId: string | IAirtableRecord): Promise<void> {
-    const id = typeof recordOrId === 'string' ? recordOrId : recordOrId.id;
+    const id = typeof recordOrId === "string" ? recordOrId : recordOrId.id;
     await this.table.destroy(id);
   }
 
-  async deleteRecordsAsync(recordsOrIds: Array<string | IAirtableRecord>): Promise<void> {
-    const ids = recordsOrIds.map(r => typeof r === 'string' ? r : r.id);
+  async deleteRecordsAsync(
+    recordsOrIds: Array<string | IAirtableRecord>
+  ): Promise<void> {
+    const ids = recordsOrIds.map((r) => (typeof r === "string" ? r : r.id));
     // Airtable API allows max 10 records per batch
     const batchSize = 10;
     for (let i = 0; i < ids.length; i += batchSize) {
@@ -171,14 +186,14 @@ class AirtableTableAdapter implements IAirtableTable {
     return {
       id: nameOrId,
       name: nameOrId,
-      type: 'unknown',
+      type: "unknown",
     };
   }
 }
 
 /**
  * Adapter for Airtable SDK Base
- * 
+ *
  * Note: The Airtable SDK doesn't expose a list of tables directly.
  * You need to specify table names when creating the adapter.
  */
@@ -193,7 +208,10 @@ export class AirtableBaseAdapter implements IAirtableBase {
 
     // Create table adapters for specified tables
     for (const tableName of tableNames) {
-      const tableAdapter = new AirtableTableAdapter(tableName, this.airtableBase);
+      const tableAdapter = new AirtableTableAdapter(
+        tableName,
+        this.airtableBase
+      );
       this.tables.push(tableAdapter);
       this.tableMap.set(tableName, tableAdapter);
     }
@@ -217,7 +235,10 @@ export class AirtableBaseAdapter implements IAirtableBase {
    */
   addTable(tableName: string): void {
     if (!this.tableMap.has(tableName)) {
-      const tableAdapter = new AirtableTableAdapter(tableName, this.airtableBase);
+      const tableAdapter = new AirtableTableAdapter(
+        tableName,
+        this.airtableBase
+      );
       this.tables.push(tableAdapter);
       this.tableMap.set(tableName, tableAdapter);
     }
@@ -227,16 +248,18 @@ export class AirtableBaseAdapter implements IAirtableBase {
 /**
  * Factory function to create an Airtable base adapter from environment variables
  */
-export function createAirtableBaseFromEnv(tableNames: string[] = []): AirtableBaseAdapter {
+export function createAirtableBaseFromEnv(
+  tableNames: string[] = []
+): AirtableBaseAdapter {
   const apiKey = process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
 
   if (!apiKey) {
-    throw new Error('AIRTABLE_API_KEY environment variable is not set');
+    throw new Error("AIRTABLE_API_KEY environment variable is not set");
   }
 
   if (!baseId) {
-    throw new Error('AIRTABLE_BASE_ID environment variable is not set');
+    throw new Error("AIRTABLE_BASE_ID environment variable is not set");
   }
 
   return new AirtableBaseAdapter(apiKey, baseId, tableNames);

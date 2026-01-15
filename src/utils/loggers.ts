@@ -1,4 +1,4 @@
-import { ILogger } from "./interfaces";
+import { ILogger } from "../types";
 
 /**
  * NodeLogger - Console-based logger for local testing

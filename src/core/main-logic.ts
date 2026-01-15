@@ -1,9 +1,5 @@
-import { IAirtableBase, ILogger } from "./interfaces";
-import {
-  findDuplicates,
-  generateTableReport,
-  searchAllTables,
-} from "./scripts";
+import { IAirtableBase, ILogger } from "../types";
+import { findDuplicates, generateTableReport, searchAllTables } from "../utils";
 
 /**
  * Main script logic with Dependency Injection

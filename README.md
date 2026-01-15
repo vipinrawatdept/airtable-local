@@ -40,7 +40,7 @@ This project provides a **local development workflow** for Airtable Scripts that
 │   └──────────────┘     └──────────────┘     └──────────────┘               │
 │         │                    │                    │                         │
 │         ▼                    ▼                    ▼                         │
-│   src/mainLogic.ts    npm test (mocks)     dist/script.js                  │
+│   src/core/main-logic.ts npm test (mocks)  dist/script.js                  │
 │                       npm run local        (paste into Airtable)           │
 │                       (real API)                                            │
 │                                                                             │
@@ -121,29 +121,54 @@ interface IAirtableRecord {
 ```
 airtable-local/
 │
-├── src/                          # Source code
-│   ├── interfaces.ts             # TypeScript interfaces (contracts)
-│   ├── loggers.ts                # Logger implementations (Adapter Pattern)
-│   ├── mainLogic.ts              # Main script logic (your code goes here)
-│   ├── scripts.ts                # Additional utility scripts
-│   ├── airtableAdapter.ts        # Adapter for Airtable SDK (local testing)
-│   ├── local.ts                  # Entry point for local execution
-│   └── index.ts                  # Entry point for Airtable bundle
+├── src/                              # Source code
+│   ├── index.ts                      # Main barrel export (re-exports all modules)
+│   │
+│   ├── core/                         # Core application logic
+│   │   ├── index.ts                  # Core module exports
+│   │   ├── main-logic.ts             # Main script logic (your code goes here)
+│   │   ├── entry.ts                  # Entry point for Airtable bundle
+│   │   └── local.ts                  # Entry point for local execution
+│   │
+│   ├── types/                        # TypeScript interfaces & types
+│   │   ├── index.ts                  # Types module exports
+│   │   └── interfaces.ts             # All interface definitions
+│   │
+│   ├── adapters/                     # External service adapters
+│   │   ├── index.ts                  # Adapters module exports
+│   │   └── airtable-adapter.ts       # Airtable SDK adapter for local testing
+│   │
+│   └── utils/                        # Utility functions & helpers
+│       ├── index.ts                  # Utils module exports
+│       ├── loggers.ts                # Logger implementations (Node/Airtable)
+│       └── scripts.ts                # Utility scripts (analysis, batch ops)
 │
-├── test/                         # Test files
-│   ├── mocks.ts                  # Mock implementations (MockBase, MockTable, etc.)
-│   └── script.test.ts            # Jest unit tests
+├── test/                             # Test files
+│   ├── __mocks__/                    # Mock implementations
+│   │   ├── index.ts                  # Mocks module exports
+│   │   └── mocks.ts                  # MockBase, MockTable, MockLogger, etc.
+│   └── script.test.ts                # Jest unit tests
 │
-├── dist/                         # Build output (git-ignored)
-│   └── script.js                 # Bundled file to paste into Airtable
+├── dist/                             # Build output (git-ignored)
+│   └── script.js                     # Bundled file to paste into Airtable
 │
-├── .env                          # API credentials (git-ignored)
-├── .env.example                  # Template for .env
-├── package.json                  # Dependencies and scripts
-├── tsconfig.json                 # TypeScript configuration
-├── jest.config.js                # Jest test configuration
-└── .gitignore                    # Git ignore rules
+├── .env                              # API credentials (git-ignored)
+├── .env.example                      # Template for .env
+├── package.json                      # Dependencies and scripts
+├── tsconfig.json                     # TypeScript configuration
+├── jest.config.js                    # Jest test configuration
+└── .gitignore                        # Git ignore rules
 ```
+
+### Module Organization
+
+| Directory         | Purpose                                       |
+| ----------------- | --------------------------------------------- |
+| `src/core/`       | Main script logic and entry points            |
+| `src/types/`      | TypeScript interfaces and type definitions    |
+| `src/adapters/`   | Adapters for external services (Airtable SDK) |
+| `src/utils/`      | Logger implementations and utility scripts    |
+| `test/__mocks__/` | Mock implementations for unit testing         |
 
 ---
 
@@ -158,7 +183,7 @@ The same script code runs in three different environments:
 │                    npm test                              │
 ├─────────────────────────────────────────────────────────┤
 │                                                          │
-│   mainLogic.ts ────▶ MockBase ────▶ MockTable           │
+│   core/main-logic.ts ────▶ MockBase ────▶ MockTable     │
 │        │                                │                │
 │        │                                ▼                │
 │        │                          MockRecord             │
@@ -182,7 +207,7 @@ The same script code runs in three different environments:
 │                  npm run local                           │
 ├─────────────────────────────────────────────────────────┤
 │                                                          │
-│   mainLogic.ts ────▶ AirtableBaseAdapter                │
+│   core/main-logic.ts ────▶ AirtableBaseAdapter          │
 │        │                    │                            │
 │        │                    ▼                            │
 │        │             Airtable SDK                        │
@@ -387,12 +412,12 @@ We use **esbuild** to bundle TypeScript into a single JavaScript file:
 │                       npm run build                              │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│   src/index.ts ──────────────────────────────────────────────▶  │
+│   src/core/entry.ts ─────────────────────────────────────────▶  │
 │       │                                                          │
-│       ├── imports mainLogic.ts                                   │
-│       ├── imports loggers.ts                                     │
-│       ├── imports interfaces.ts                                  │
-│       └── imports scripts.ts                                     │
+│       ├── imports core/main-logic.ts                             │
+│       ├── imports utils/loggers.ts                               │
+│       ├── imports types/interfaces.ts                            │
+│       └── imports utils/scripts.ts                               │
 │                                                                  │
 │                         esbuild                                  │
 │                           │                                      │
@@ -445,7 +470,7 @@ function isAirtableEnvironment(): boolean {
 │                        DEPLOYMENT CHECKLIST                                 │
 ├────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
-│   1. ☐ Write/modify code in src/mainLogic.ts                               │
+│   1. ☐ Write/modify code in src/core/main-logic.ts                         │
 │                                                                             │
 │   2. ☐ Run unit tests                                                       │
 │         $ npm test                                                          │
@@ -602,6 +627,15 @@ npm run build
 4. Run `npm test` to verify
 5. Run `npm run local` to integration test
 6. Submit pull request for review
+
+### Key Files for Development
+
+| File                      | Purpose                    |
+| ------------------------- | -------------------------- |
+| `src/core/main-logic.ts`  | Add your script logic here |
+| `src/types/interfaces.ts` | Define new interfaces      |
+| `src/utils/scripts.ts`    | Add utility functions      |
+| `test/__mocks__/mocks.ts` | Add/update test mocks      |
 
 ---
 
