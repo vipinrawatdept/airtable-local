@@ -9,50 +9,88 @@ A production-ready local development environment for writing Airtable Scripts wi
 - 📦 **esbuild** - Fast bundling to single file for Airtable
 - 💉 **Dependency Injection** - Easy testing and environment switching
 - 🔌 **Adapter Pattern** - Swap between Node.js console and Airtable output
+- 🔗 **Airtable SDK** - Run scripts locally against real Airtable bases
+
+## Prerequisites
+
+- Node.js 18+ (recommended: 20+)
+- npm or yarn
+- An Airtable account with API access
 
 ## Quick Start
 
 ```bash
-# Install dependencies
+# 1. Install dependencies
 npm install
 
-# Run tests (with mocks)
+# 2. Run tests (with mocks - no API key needed)
 npm test
 
-# Build for Airtable
+# 3. Build for Airtable
 npm run build
 # Output: dist/script.js - paste into Airtable Scripting block
+```
 
-# Run locally against real Airtable (see setup below)
+## Running Locally Against Real Airtable
+
+You can run your scripts locally against a real Airtable base using the official [Airtable SDK](https://github.com/Airtable/airtable.js).
+
+### Step 1: Get Your API Credentials
+
+1. **Personal Access Token (API Key)**:
+   - Go to [airtable.com/create/tokens](https://airtable.com/create/tokens)
+   - Click **"Create new token"**
+   - Name it (e.g., "Local Dev")
+   - Add scopes: `data.records:read`, `data.records:write`, `schema.bases:read`
+   - Under "Access", add your base
+   - Click **"Create token"**
+   - ⚠️ **Copy the ENTIRE token** (starts with `pat`, ~60-80 characters long)
+
+2. **Base ID**:
+   - Go to [airtable.com/api](https://airtable.com/api)
+   - Select your base
+   - Find the Base ID in the URL: `https://airtable.com/appXXXXXXXXXX/api/docs`
+   - Copy the part starting with `app`
+
+### Step 2: Configure Environment
+
+```bash
+# Create your .env file from the template
+cp .env.example .env
+```
+
+Edit `.env` with your credentials:
+
+```env
+# Your full Personal Access Token (60-80 characters, starts with 'pat')
+AIRTABLE_API_KEY=patXXXXXXXXXXXXXX.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+# Your Base ID (starts with 'app')
+AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
+
+# Comma-separated list of your actual table names
+AIRTABLE_TABLE_NAMES=Tasks,Projects,Users
+```
+
+> ⚠️ **Common Mistake**: Make sure you copy the **entire** API token. If it's only ~17 characters, you only copied part of it!
+
+### Step 3: Run Your Script
+
+```bash
 npm run local
 ```
 
-## Running Against Real Airtable
-
-You can run your scripts locally against a real Airtable base using the official Airtable SDK.
-
-### Setup
-
-1. **Get your API credentials:**
-   - Create a Personal Access Token at [airtable.com/create/tokens](https://airtable.com/create/tokens)
-   - Get your Base ID from [airtable.com/api](https://airtable.com/api) (select a base, ID is in the URL like `appXXXXXXXXXX`)
-
-2. **Create `.env` file:**
-   ```bash
-   cp .env.example .env
-   ```
-
-3. **Fill in your credentials in `.env`:**
-   ```env
-   AIRTABLE_API_KEY=pat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-   AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
-   AIRTABLE_TABLE_NAMES=Tasks,Projects,Users
-   ```
-
-4. **Run your script:**
-   ```bash
-   npm run local
-   ```
+Expected output:
+```
+[Local Runner] 🔧 Starting local execution with Airtable SDK...
+[Local Runner] 📋 Pre-loaded tables: Tasks, Projects, Users
+[Local Runner] 🚀 Script started
+[Local Runner] 📊 Found 3 table(s) in this base
+[Local Runner]   - Tasks (Tasks)
+...
+[Local Runner] ✨ Script completed successfully!
+🎉 Local execution completed!
+```
 
 ## Project Structure
 
@@ -69,7 +107,9 @@ You can run your scripts locally against a real Airtable base using the official
 │   └── script.test.ts      # Jest tests
 ├── dist/
 │   └── script.js           # Bundled output for Airtable
-└── .env                    # Your API credentials (git-ignored)
+├── .env.example            # Template for environment variables
+├── .env                    # Your API credentials (git-ignored)
+└── .gitignore              # Excludes node_modules, dist, .env
 ```
 
 ## Available Scripts
@@ -147,6 +187,23 @@ describe('runScript', () => {
 | **Mocks** | `npm test` | Unit testing, CI/CD |
 | **Real API** | `npm run local` | Integration testing, debugging |
 | **Airtable** | Paste `dist/script.js` | Production |
+
+## Troubleshooting
+
+### "AUTHENTICATION_REQUIRED" Error
+
+- **Cause**: Invalid or incomplete API token
+- **Fix**: Ensure you copied the **entire** token from Airtable (should be 60-80 characters starting with `pat`)
+
+### "Table not found" Error
+
+- **Cause**: Table name in `AIRTABLE_TABLE_NAMES` doesn't match actual table name
+- **Fix**: Check your Airtable base for exact table names (case-sensitive)
+
+### Module Resolution Errors
+
+- **Cause**: TypeScript/Node.js module conflict
+- **Fix**: The `tsconfig.json` includes `ts-node` settings to handle this automatically
 
 ## API Reference
 
