@@ -1,4 +1,4 @@
-import { ILogger } from './interfaces';
+import { ILogger } from "./interfaces";
 
 /**
  * NodeLogger - Console-based logger for local testing
@@ -7,7 +7,7 @@ import { ILogger } from './interfaces';
 export class NodeLogger implements ILogger {
   private prefix: string;
 
-  constructor(prefix: string = '[Airtable Script]') {
+  constructor(prefix: string = "[Airtable Script]") {
     this.prefix = prefix;
   }
 
@@ -33,36 +33,25 @@ export class NodeLogger implements ILogger {
 
 /**
  * AirtableLogger - Logger for Airtable Scripting environment
- * Uses Airtable's global output object
- * 
- * Note: In Airtable Scripts, 'output' is a global object with:
- * - output.text(message: string): Display text output
- * - output.inspect(data: any): Display formatted object inspection
- * - output.markdown(text: string): Display markdown formatted text
- * - output.table(data: any): Display data as a table
+ * Uses console.log for compatibility
  */
 export class AirtableLogger implements ILogger {
   log(message: string): void {
-    // @ts-expect-error - 'output' is a global in Airtable Scripts
-    output.text(message);
+    console.log(message);
   }
 
   inspect(data: unknown, label?: string): void {
     if (label) {
-      // @ts-expect-error - 'output' is a global in Airtable Scripts
-      output.text(label + ':');
+      console.log(label + ":");
     }
-    // @ts-expect-error - 'output' is a global in Airtable Scripts
-    output.inspect(data);
+    console.log(data);
   }
 
   error(message: string): void {
-    // @ts-expect-error - 'output' is a global in Airtable Scripts
-    output.text(`❌ ERROR: ${message}`);
+    console.error(`❌ ERROR: ${message}`);
   }
 
   warn(message: string): void {
-    // @ts-expect-error - 'output' is a global in Airtable Scripts
-    output.text(`⚠️ WARNING: ${message}`);
+    console.warn(`⚠️ WARNING: ${message}`);
   }
 }
