@@ -1,4 +1,9 @@
 import { IAirtableBase, ILogger } from "./interfaces";
+import {
+  findDuplicates,
+  generateTableReport,
+  searchAllTables,
+} from "./scripts";
 
 /**
  * Main script logic with Dependency Injection
@@ -46,6 +51,20 @@ export async function runScript(
       if (records.length > 5) {
         logger.log(`  ... and ${records.length - 5} more`);
       }
+
+      // ═══════════════════════════════════════════════════════════
+      // Run complex analysis scripts
+      // ═══════════════════════════════════════════════════════════
+
+      // 1. Search across all tables
+      await searchAllTables(base, "test", logger);
+
+      // 2. Generate a table report (showing available fields)
+      // Note: Customize the field names based on your actual table structure
+      await generateTableReport(base, firstTable.name, ["Name"], logger);
+
+      // 3. Find duplicates by Name field
+      await findDuplicates(base, firstTable.name, "Name", logger);
     }
 
     logger.log("\n✨ Script completed successfully!");

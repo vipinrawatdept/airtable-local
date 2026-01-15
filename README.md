@@ -38,6 +38,7 @@ You can run your scripts locally against a real Airtable base using the official
 ### Step 1: Get Your API Credentials
 
 1. **Personal Access Token (API Key)**:
+
    - Go to [airtable.com/create/tokens](https://airtable.com/create/tokens)
    - Click **"Create new token"**
    - Name it (e.g., "Local Dev")
@@ -81,6 +82,7 @@ npm run local
 ```
 
 Expected output:
+
 ```
 [Local Runner] 🔧 Starting local execution with Airtable SDK...
 [Local Runner] 📋 Pre-loaded tables: Tasks, Projects, Users
@@ -114,13 +116,13 @@ Expected output:
 
 ## Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm test` | Run Jest tests with mocks |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run build` | Bundle to `dist/script.js` |
-| `npm run watch` | Bundle in watch mode |
-| `npm run local` | Run against real Airtable base |
+| Command               | Description                     |
+| --------------------- | ------------------------------- |
+| `npm test`            | Run Jest tests with mocks       |
+| `npm run test:watch`  | Run tests in watch mode         |
+| `npm run build`       | Bundle to `dist/script.js`      |
+| `npm run watch`       | Bundle in watch mode            |
+| `npm run local`       | Run against real Airtable base  |
 | `npm run local:watch` | Run with auto-reload on changes |
 
 ## Writing Your Script
@@ -128,22 +130,22 @@ Expected output:
 Edit `src/mainLogic.ts` with your script logic:
 
 ```typescript
-import { IAirtableBase, ILogger } from './interfaces';
+import { IAirtableBase, ILogger } from "./interfaces";
 
 export async function runScript(
   base: IAirtableBase,
   logger: ILogger
 ): Promise<void> {
   // Your logic here
-  const table = base.getTable('Tasks');
+  const table = base.getTable("Tasks");
   const { records } = await table.selectRecordsAsync();
-  
+
   for (const record of records) {
-    const name = record.getCellValue('Name');
+    const name = record.getCellValue("Name");
     logger.log(`Processing: ${name}`);
-    
+
     await table.updateRecordAsync(record.id, {
-      'Status': 'Processed'
+      Status: "Processed",
     });
   }
 }
@@ -153,21 +155,21 @@ export async function runScript(
 
 ```typescript
 // test/script.test.ts
-import { runScript } from '../src/mainLogic';
-import { MockBase, MockTable, MockRecord, MockLogger } from './mocks';
+import { runScript } from "../src/mainLogic";
+import { MockBase, MockTable, MockRecord, MockLogger } from "./mocks";
 
-describe('runScript', () => {
-  it('should process records', async () => {
+describe("runScript", () => {
+  it("should process records", async () => {
     const records = [
-      new MockRecord('rec001', { Name: 'Task 1', Status: 'Pending' }),
+      new MockRecord("rec001", { Name: "Task 1", Status: "Pending" }),
     ];
-    const table = new MockTable('tbl001', 'Tasks', records);
+    const table = new MockTable("tbl001", "Tasks", records);
     const base = new MockBase([table]);
     const logger = new MockLogger();
 
     await runScript(base, logger);
 
-    expect(logger.hasLog('Processing')).toBe(true);
+    expect(logger.hasLog("Processing")).toBe(true);
   });
 });
 ```
@@ -182,11 +184,11 @@ describe('runScript', () => {
 
 ## Three Ways to Run
 
-| Method | Command | Use Case |
-|--------|---------|----------|
-| **Mocks** | `npm test` | Unit testing, CI/CD |
-| **Real API** | `npm run local` | Integration testing, debugging |
-| **Airtable** | Paste `dist/script.js` | Production |
+| Method       | Command                | Use Case                       |
+| ------------ | ---------------------- | ------------------------------ |
+| **Mocks**    | `npm test`             | Unit testing, CI/CD            |
+| **Real API** | `npm run local`        | Integration testing, debugging |
+| **Airtable** | Paste `dist/script.js` | Production                     |
 
 ## Troubleshooting
 
