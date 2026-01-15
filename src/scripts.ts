@@ -8,11 +8,7 @@
  * - Data validation and cleanup
  */
 
-import {
-  IAirtableBase,
-  IAirtableRecord,
-  ILogger,
-} from "./interfaces";
+import { IAirtableBase, IAirtableRecord, ILogger } from "./interfaces";
 
 /**
  * Analyze records and generate a summary report
