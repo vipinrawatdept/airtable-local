@@ -10,7 +10,8 @@
     "watch": "esbuild src/core/entry.ts --bundle --outfile=dist/script.js --format=iife --target=es2020 --watch",
     "local": "npx ts-node src/core/local.ts",
     "local:csv": "USE_CSV_DATA=true npx ts-node src/core/local.ts",
-    "local:watch": "npx ts-node-dev --respawn src/core/local.ts"
+    "local:watch": "npx ts-node-dev --respawn src/core/local.ts",
+    "download": "npx ts-node src/utils/download-tables.ts"
   },
   "keywords": [
     "airtable",
