@@ -1,5 +1,4 @@
 import { IAirtableBase, ILogger } from "../types";
-import { findDuplicates, generateTableReport, searchAllTables } from "../utils";
 
 /**
  * Main script logic with Dependency Injection
@@ -49,18 +48,9 @@ export async function runScript(
       }
 
       // ═══════════════════════════════════════════════════════════
-      // Run complex analysis scripts
+      // Run update records script
       // ═══════════════════════════════════════════════════════════
-
-      // 1. Search across all tables
-      await searchAllTables(base, "test", logger);
-
-      // 2. Generate a table report (showing available fields)
-      // Note: Customize the field names based on your actual table structure
-      await generateTableReport(base, firstTable.name, ["Name"], logger);
-
-      // 3. Find duplicates by Name field
-      await findDuplicates(base, firstTable.name, "Name", logger);
+      await updateRecordsScript(base, firstTable.name, logger);
     }
 
     logger.log("\n✨ Script completed successfully!");
@@ -142,4 +132,52 @@ export async function createSampleRecords(
   }
 
   return createdIds;
+}
+
+/**
+ * Update records script - Updates records based on criteria
+ *
+ * @param base - The Airtable base
+ * @param tableName - Name of the table to update
+ * @param logger - The logger implementation
+ */
+export async function updateRecordsScript(
+  base: IAirtableBase,
+  tableName: string,
+  logger: ILogger
+): Promise<{ updated: number; skipped: number }> {
+  logger.log(`\n🔄 Starting update records script on "${tableName}"...`);
+
+  const table = base.getTable(tableName);
+  const queryResult = await table.selectRecordsAsync();
+  const records = queryResult.records;
+
+  logger.log(`📋 Found ${records.length} record(s) to process`);
+
+  let updated = 0;
+  let skipped = 0;
+
+  for (const record of records) {
+    const url = record.getCellValue("url");
+
+    // Update all records with a new llm_result value
+    if (url) {
+      await table.updateRecordAsync(record.id, {
+        llm_result: "some new value",
+      });
+      updated++;
+      logger.log(
+        `  ✅ Updated record: ${record.id} → llm_result: "some new value"`
+      );
+    } else {
+      skipped++;
+      logger.log(`  ⏭️  Skipped: ${record.id} (no URL)`);
+    }
+  }
+
+  logger.log(`\n📊 Summary:`);
+  logger.log(`   Updated: ${updated}`);
+  logger.log(`   Skipped: ${skipped}`);
+
+  return { updated, skipped };
 }
