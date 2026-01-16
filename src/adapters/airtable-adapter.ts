@@ -25,6 +25,7 @@ import {
   FieldSet,
   RecordSelectOptions,
 } from "../types";
+import { valueToString } from "../utils";
 
 /**
  * Adapter for Airtable SDK Record
@@ -46,14 +47,7 @@ class AirtableRecordAdapter implements IAirtableRecord {
   }
 
   getCellValueAsString(fieldNameOrId: string): string {
-    const value = this.getCellValue(fieldNameOrId);
-    if (value === null || value === undefined) {
-      return "";
-    }
-    if (typeof value === "object") {
-      return JSON.stringify(value);
-    }
-    return String(value);
+    return valueToString(this.getCellValue(fieldNameOrId));
   }
 }
 

@@ -28,6 +28,7 @@ import {
   FieldSet,
   RecordSelectOptions,
 } from "../types";
+import { valueToString } from "../utils";
 
 /**
  * Adapter for CSV Record
@@ -48,14 +49,7 @@ class CsvRecordAdapter implements IAirtableRecord {
   }
 
   getCellValueAsString(fieldNameOrId: string): string {
-    const value = this.getCellValue(fieldNameOrId);
-    if (value === null || value === undefined) {
-      return "";
-    }
-    if (typeof value === "object") {
-      return JSON.stringify(value);
-    }
-    return String(value);
+    return valueToString(this.getCellValue(fieldNameOrId));
   }
 
   /**
@@ -329,13 +323,6 @@ class CsvTableAdapter implements IAirtableTable {
     }
     return field;
   }
-
-  /**
-   * Get record count
-   */
-  getRecordCount(): number {
-    return this.records.size;
-  }
 }
 
 /**
@@ -395,16 +382,6 @@ export class CsvBaseAdapter implements IAirtableBase {
       );
     }
     return table;
-  }
-
-  /**
-   * Add a new table from a CSV file
-   */
-  addTableFromCsv(csvFilePath: string, tableName?: string): void {
-    const name = tableName || path.basename(csvFilePath, ".csv");
-    const table = new CsvTableAdapter(name, csvFilePath, this.autoSave);
-    this.tables.push(table);
-    this.tableMap.set(name, table);
   }
 }
 

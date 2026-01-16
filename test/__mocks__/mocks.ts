@@ -15,6 +15,7 @@ import {
   RecordSelectOptions,
   ILogger,
 } from "../../src/types";
+import { valueToString } from "../../src/utils";
 
 /**
  * Mock Record - Simulates an Airtable record
@@ -36,14 +37,7 @@ export class MockRecord implements IAirtableRecord {
   }
 
   getCellValueAsString(fieldNameOrId: string): string {
-    const value = this.getCellValue(fieldNameOrId);
-    if (value === null || value === undefined) {
-      return "";
-    }
-    if (typeof value === "object") {
-      return JSON.stringify(value);
-    }
-    return String(value);
+    return valueToString(this.getCellValue(fieldNameOrId));
   }
 
   /**
@@ -55,19 +49,12 @@ export class MockRecord implements IAirtableRecord {
       this.name = fields["Name"] as string;
     }
   }
-
-  /**
-   * Get all fields (useful for testing assertions)
-   */
-  _getAllFields(): FieldSet {
-    return { ...this.fields };
-  }
 }
 
 /**
- * Mock Query Result - Simulates selectRecordsAsync result
+ * Mock Query Result - Simulates selectRecordsAsync result (internal use only)
  */
-export class MockQueryResult implements IAirtableQueryResult {
+class MockQueryResult implements IAirtableQueryResult {
   public records: MockRecord[];
   private recordMap: Map<string, MockRecord>;
 
@@ -82,9 +69,9 @@ export class MockQueryResult implements IAirtableQueryResult {
 }
 
 /**
- * Mock Field - Simulates an Airtable field definition
+ * Mock Field - Simulates an Airtable field definition (internal use only)
  */
-export class MockField implements IAirtableField {
+class MockField implements IAirtableField {
   public id: string;
   public name: string;
   public type: string;
@@ -254,25 +241,6 @@ export class MockTable implements IAirtableTable {
   _getRecord(id: string): MockRecord | undefined {
     return this.records.get(id);
   }
-
-  /**
-   * Get all records (useful for testing assertions)
-   */
-  _getAllRecords(): MockRecord[] {
-    return Array.from(this.records.values());
-  }
-
-  /**
-   * Reset call tracking (useful between tests)
-   */
-  _resetCalls(): void {
-    this._calls = {
-      selectRecordsAsync: [],
-      updateRecordAsync: [],
-      createRecordAsync: [],
-      deleteRecordAsync: [],
-    };
-  }
 }
 
 /**
@@ -297,15 +265,6 @@ export class MockBase implements IAirtableBase {
       throw new Error(`Table "${nameOrId}" not found in base`);
     }
     return table;
-  }
-
-  /**
-   * Add a table to the base
-   */
-  addTable(table: MockTable): void {
-    this.tables.push(table);
-    this.tableMap.set(table.id, table);
-    this.tableMap.set(table.name, table);
   }
 }
 
