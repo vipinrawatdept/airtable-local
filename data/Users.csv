@@ -1,0 +1,6 @@
+id,Name,Email,Role,Department,Active
+rec001,John Smith,john@example.com,Developer,Engineering,true
+rec002,Jane Doe,jane@example.com,Designer,Design,true
+rec003,Bob Johnson,bob@example.com,Manager,Engineering,true
+rec004,Alice Brown,alice@example.com,Developer,Engineering,true
+rec005,Charlie Wilson,charlie@example.com,QA Engineer,Quality,false
