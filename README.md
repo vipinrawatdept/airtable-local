@@ -451,15 +451,57 @@ function isAirtableEnvironment(): boolean {
 
 ## 🛠️ Available Commands
 
-| Command               | Description               | Use Case            |
-| --------------------- | ------------------------- | ------------------- |
-| `npm install`         | Install dependencies      | Initial setup       |
-| `npm test`            | Run unit tests with mocks | Development, CI/CD  |
-| `npm run test:watch`  | Run tests in watch mode   | Active development  |
-| `npm run local`       | Run against real Airtable | Integration testing |
-| `npm run local:watch` | Run with auto-reload      | Active development  |
-| `npm run build`       | Bundle for Airtable       | Deployment          |
-| `npm run watch`       | Bundle in watch mode      | Active development  |
+| Command               | Description                   | Use Case            |
+| --------------------- | ----------------------------- | ------------------- |
+| `npm install`         | Install dependencies          | Initial setup       |
+| `npm test`            | Run unit tests with mocks     | Development, CI/CD  |
+| `npm run test:watch`  | Run tests in watch mode       | Active development  |
+| `npm run local`       | Run against real Airtable API | Integration testing |
+| `npm run local:csv`   | Run against local CSV files   | Fast local testing  |
+| `npm run local:watch` | Run with auto-reload          | Active development  |
+| `npm run build`       | Bundle for Airtable           | Deployment          |
+| `npm run watch`       | Bundle in watch mode          | Active development  |
+
+---
+
+## 📂 Local CSV Testing
+
+For faster iteration without API calls, you can test against local CSV files.
+
+### Setup
+
+1. Create CSV files in the `data/` directory (one file per table)
+2. Run with CSV mode: `npm run local:csv`
+
+### CSV Format
+
+```csv
+id,Name,Status,Priority,Created
+rec001,Task 1,Pending,High,2026-01-10
+rec002,Task 2,Completed,Medium,2026-01-11
+```
+
+- First row = field names
+- `id` column is optional (auto-generated if missing)
+- Filename (without `.csv`) = table name
+
+### Environment Variables
+
+| Variable        | Default  | Description                    |
+| --------------- | -------- | ------------------------------ |
+| `USE_CSV_DATA`  | `false`  | Set to `true` to use CSV mode  |
+| `CSV_DATA_DIR`  | `./data` | Directory containing CSV files |
+| `CSV_AUTO_SAVE` | `false`  | Save changes back to CSV files |
+
+### Example Workflow
+
+```bash
+# Fast testing with CSV (no API calls)
+npm run local:csv
+
+# Integration testing with real Airtable
+npm run local
+```
 
 ---
 

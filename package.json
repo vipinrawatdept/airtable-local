@@ -9,6 +9,7 @@
     "build": "esbuild src/core/entry.ts --bundle --outfile=dist/script.js --format=iife --target=es2020",
     "watch": "esbuild src/core/entry.ts --bundle --outfile=dist/script.js --format=iife --target=es2020 --watch",
     "local": "npx ts-node src/core/local.ts",
+    "local:csv": "USE_CSV_DATA=true npx ts-node src/core/local.ts",
     "local:watch": "npx ts-node-dev --respawn src/core/local.ts"
   },
   "keywords": [
@@ -31,6 +32,8 @@
   },
   "dependencies": {
     "airtable": "^0.12.2",
+    "csv-parse": "^6.1.0",
+    "csv-stringify": "^6.6.0",
     "dotenv": "^17.2.3"
   }
 }

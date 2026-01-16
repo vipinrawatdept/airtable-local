@@ -194,15 +194,19 @@ class AirtableTableAdapter implements IAirtableTable {
 /**
  * Adapter for Airtable SDK Base
  *
- * Note: The Airtable SDK doesn't expose a list of tables directly.
- * You need to specify table names when creating the adapter.
+ * Can automatically fetch table names from Airtable Metadata API
+ * if no table names are provided.
  */
 export class AirtableBaseAdapter implements IAirtableBase {
   public tables: IAirtableTable[] = [];
   private airtableBase: Airtable.Base;
   private tableMap: Map<string, IAirtableTable> = new Map();
+  private apiKey: string;
+  private baseId: string;
 
   constructor(apiKey: string, baseId: string, tableNames: string[] = []) {
+    this.apiKey = apiKey;
+    this.baseId = baseId;
     Airtable.configure({ apiKey });
     this.airtableBase = Airtable.base(baseId);
 
@@ -214,6 +218,51 @@ export class AirtableBaseAdapter implements IAirtableBase {
       );
       this.tables.push(tableAdapter);
       this.tableMap.set(tableName, tableAdapter);
+    }
+  }
+
+  /**
+   * Fetch table names from Airtable Metadata API
+   * Requires `schema.bases:read` scope on your API token
+   */
+  async fetchTableNames(): Promise<string[]> {
+    const url = `https://api.airtable.com/v0/meta/bases/${this.baseId}/tables`;
+
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${this.apiKey}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(
+        `Failed to fetch table metadata: ${response.status} ${response.statusText}. ` +
+          `Make sure your API token has 'schema.bases:read' scope. Details: ${errorText}`
+      );
+    }
+
+    const data = (await response.json()) as {
+      tables: Array<{ name: string; id: string }>;
+    };
+    return data.tables.map((t) => t.name);
+  }
+
+  /**
+   * Load all tables from Airtable Metadata API
+   */
+  async loadAllTables(): Promise<void> {
+    const tableNames = await this.fetchTableNames();
+
+    for (const tableName of tableNames) {
+      if (!this.tableMap.has(tableName)) {
+        const tableAdapter = new AirtableTableAdapter(
+          tableName,
+          this.airtableBase
+        );
+        this.tables.push(tableAdapter);
+        this.tableMap.set(tableName, tableAdapter);
+      }
     }
   }
 
@@ -263,4 +312,13 @@ export function createAirtableBaseFromEnv(
   }
 
   return new AirtableBaseAdapter(apiKey, baseId, tableNames);
+}
+
+/**
+ * Factory function to create an Airtable base adapter and auto-load all tables
+ */
+export async function createAirtableBaseWithAutoLoad(): Promise<AirtableBaseAdapter> {
+  const base = createAirtableBaseFromEnv([]);
+  await base.loadAllTables();
+  return base;
 }
