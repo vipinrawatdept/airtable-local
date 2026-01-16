@@ -1,17 +1,5 @@
-/**
- * Airtable Script Utilities
- *
- * Helper functions for common Airtable operations:
- * - Finding duplicates
- * - Generating reports
- * - Cross-table search
- */
-
 import { IAirtableBase, IAirtableRecord, ILogger } from "../types";
 
-/**
- * Find duplicate records based on a field
- */
 export async function findDuplicates(
   base: IAirtableBase,
   tableName: string,
@@ -58,9 +46,6 @@ export async function findDuplicates(
   return duplicates;
 }
 
-/**
- * Generate a text-based report of table contents
- */
 export async function generateTableReport(
   base: IAirtableBase,
   tableName: string,
@@ -79,12 +64,10 @@ export async function generateTableReport(
   lines.push(`  Total Records: ${records.length}`);
   lines.push(`${"═".repeat(60)}\n`);
 
-  // Header
   const header = fields.map((f) => f.padEnd(15)).join(" | ");
   lines.push(header);
   lines.push("─".repeat(header.length));
 
-  // Data rows
   for (const record of records.slice(0, 20)) {
     const row = fields
       .map((field) => {
@@ -107,9 +90,6 @@ export async function generateTableReport(
   return report;
 }
 
-/**
- * Search records across all tables for a value
- */
 export async function searchAllTables(
   base: IAirtableBase,
   searchTerm: string,
@@ -125,7 +105,6 @@ export async function searchAllTables(
     const matches: IAirtableRecord[] = [];
 
     for (const record of records) {
-      // Search in record name
       if (record.name.toLowerCase().includes(searchLower)) {
         matches.push(record);
       }

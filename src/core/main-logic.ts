@@ -1,16 +1,5 @@
 import { IAirtableBase, ILogger } from "../types";
 
-/**
- * Main script logic with Dependency Injection
- *
- * This function contains your Airtable script logic.
- * It receives the base and logger as dependencies, making it:
- * - Testable (pass mocks during testing)
- * - Environment-agnostic (works in Node.js and Airtable)
- *
- * @param base - The Airtable base (real or mocked)
- * @param logger - The logger implementation (NodeLogger or AirtableLogger)
- */
 export async function runScript(
   base: IAirtableBase,
   logger: ILogger
@@ -18,16 +7,13 @@ export async function runScript(
   logger.log("🚀 Script started");
 
   try {
-    // Example: Get all tables in the base
     const tables = base.tables;
     logger.log(`📊 Found ${tables.length} table(s) in this base`);
 
-    // Example: List table names
     for (const table of tables) {
       logger.log(`  - ${table.name} (${table.id})`);
     }
 
-    // Example: If there's at least one table, fetch its records
     if (tables.length > 0) {
       const firstTable = tables[0];
       logger.log(`\n📋 Fetching records from "${firstTable.name}"...`);
@@ -37,7 +23,6 @@ export async function runScript(
 
       logger.log(`✅ Retrieved ${records.length} record(s)`);
 
-      // Example: Log first 5 records
       const recordsToShow = records.slice(0, 5);
       for (const record of recordsToShow) {
         logger.log(`  - Record: ${record.name} (${record.id})`);
@@ -47,9 +32,6 @@ export async function runScript(
         logger.log(`  ... and ${records.length - 5} more`);
       }
 
-      // ═══════════════════════════════════════════════════════════
-      // Run update records script
-      // ═══════════════════════════════════════════════════════════
       await updateRecordsScript(base, firstTable.name, logger);
     }
 
@@ -61,13 +43,6 @@ export async function runScript(
   }
 }
 
-/**
- * Example: Process records in a table
- *
- * @param base - The Airtable base
- * @param tableName - Name of the table to process
- * @param logger - The logger implementation
- */
 export async function processTableRecords(
   base: IAirtableBase,
   tableName: string,
@@ -84,10 +59,8 @@ export async function processTableRecords(
 
   for (const record of records) {
     try {
-      // Example: Get a cell value
       const status = record.getCellValue("Status");
 
-      // Example: Update record based on condition
       if (status === "Pending") {
         await table.updateRecordAsync(record.id, {
           Status: "Processed",
@@ -107,9 +80,6 @@ export async function processTableRecords(
   return { processed, errors };
 }
 
-/**
- * Example: Create new records
- */
 export async function createSampleRecords(
   base: IAirtableBase,
   tableName: string,
@@ -134,13 +104,6 @@ export async function createSampleRecords(
   return createdIds;
 }
 
-/**
- * Update records script - Updates records based on criteria
- *
- * @param base - The Airtable base
- * @param tableName - Name of the table to update
- * @param logger - The logger implementation
- */
 export async function updateRecordsScript(
   base: IAirtableBase,
   tableName: string,

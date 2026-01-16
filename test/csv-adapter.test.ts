@@ -1,10 +1,3 @@
-/**
- * Jest Tests for CSV Adapter
- *
- * Tests the CsvBaseAdapter functionality for loading and
- * manipulating data from CSV files.
- */
-
 import * as fs from "fs";
 import * as path from "path";
 import { CsvBaseAdapter } from "../src/adapters/csv-adapter";

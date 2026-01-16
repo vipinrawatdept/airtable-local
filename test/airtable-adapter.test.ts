@@ -1,11 +1,3 @@
-/**
- * Jest Tests for Airtable Adapter
- *
- * Tests the AirtableBaseAdapter functionality including
- * the Metadata API for auto-discovering tables.
- */
-
-// Mock the fetch function globally
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
 

@@ -1,15 +1,3 @@
-/**
- * Airtable SDK Adapter
- *
- * This adapter wraps the official Airtable.js SDK to conform to our
- * IAirtable* interfaces, allowing you to run scripts locally against
- * a real Airtable base.
- *
- * Usage:
- *   1. Set AIRTABLE_API_KEY and AIRTABLE_BASE_ID in .env
- *   2. Run: npm run local
- */
-
 import Airtable from "airtable";
 import type {
   FieldSet as AirtableFieldSet,
@@ -27,9 +15,6 @@ import {
 } from "../types";
 import { valueToString } from "../utils";
 
-/**
- * Adapter for Airtable SDK Record
- */
 class AirtableRecordAdapter implements IAirtableRecord {
   public id: string;
   public name: string;
@@ -51,9 +36,6 @@ class AirtableRecordAdapter implements IAirtableRecord {
   }
 }
 
-/**
- * Adapter for Airtable SDK Query Result
- */
 class AirtableQueryResultAdapter implements IAirtableQueryResult {
   public records: IAirtableRecord[];
   private recordMap: Map<string, IAirtableRecord>;
@@ -68,13 +50,10 @@ class AirtableQueryResultAdapter implements IAirtableQueryResult {
   }
 }
 
-/**
- * Adapter for Airtable SDK Table
- */
 class AirtableTableAdapter implements IAirtableTable {
   public id: string;
   public name: string;
-  public fields: IAirtableField[] = []; // SDK doesn't expose fields directly
+  public fields: IAirtableField[] = [];
   private table: Airtable.Table<AirtableFieldSet>;
 
   constructor(tableName: string, airtableBase: Airtable.Base) {
@@ -99,10 +78,8 @@ class AirtableTableAdapter implements IAirtableTable {
       }));
     }
 
-    // Fetch all records (paginated automatically)
     const records = await this.table.select(selectOptions).all();
 
-    // Filter by recordIds if specified (SDK doesn't support this directly)
     if (options?.recordIds) {
       const idSet = new Set(options.recordIds);
       const filtered = records.filter((r) => idSet.has(r.id));
@@ -123,7 +100,6 @@ class AirtableTableAdapter implements IAirtableTable {
   async updateRecordsAsync(
     records: Array<{ id: string; fields: FieldSet }>
   ): Promise<void> {
-    // Airtable API allows max 10 records per batch
     const batchSize = 10;
     for (let i = 0; i < records.length; i += batchSize) {
       const batch = records.slice(i, i + batchSize).map((r) => ({
@@ -142,7 +118,6 @@ class AirtableTableAdapter implements IAirtableTable {
   async createRecordsAsync(
     records: Array<{ fields: FieldSet }>
   ): Promise<string[]> {
-    // Airtable API allows max 10 records per batch
     const batchSize = 10;
     const createdIds: string[] = [];
 
@@ -166,7 +141,6 @@ class AirtableTableAdapter implements IAirtableTable {
     recordsOrIds: Array<string | IAirtableRecord>
   ): Promise<void> {
     const ids = recordsOrIds.map((r) => (typeof r === "string" ? r : r.id));
-    // Airtable API allows max 10 records per batch
     const batchSize = 10;
     for (let i = 0; i < ids.length; i += batchSize) {
       const batch = ids.slice(i, i + batchSize);
@@ -175,8 +149,6 @@ class AirtableTableAdapter implements IAirtableTable {
   }
 
   getField(nameOrId: string): IAirtableField {
-    // SDK doesn't expose field metadata directly
-    // Return a placeholder - you'd need to use Airtable Metadata API for full support
     return {
       id: nameOrId,
       name: nameOrId,
@@ -185,12 +157,6 @@ class AirtableTableAdapter implements IAirtableTable {
   }
 }
 
-/**
- * Adapter for Airtable SDK Base
- *
- * Can automatically fetch table names from Airtable Metadata API
- * if no table names are provided.
- */
 export class AirtableBaseAdapter implements IAirtableBase {
   public tables: IAirtableTable[] = [];
   private airtableBase: Airtable.Base;
@@ -215,10 +181,6 @@ export class AirtableBaseAdapter implements IAirtableBase {
     }
   }
 
-  /**
-   * Fetch table names from Airtable Metadata API
-   * Requires `schema.bases:read` scope on your API token
-   */
   async fetchTableNames(): Promise<string[]> {
     const url = `https://api.airtable.com/v0/meta/bases/${this.baseId}/tables`;
 
@@ -242,9 +204,6 @@ export class AirtableBaseAdapter implements IAirtableBase {
     return data.tables.map((t) => t.name);
   }
 
-  /**
-   * Load all tables from Airtable Metadata API
-   */
   async loadAllTables(): Promise<void> {
     const tableNames = await this.fetchTableNames();
 
@@ -273,9 +232,6 @@ export class AirtableBaseAdapter implements IAirtableBase {
     return table;
   }
 
-  /**
-   * Add a table to the known tables list
-   */
   addTable(tableName: string): void {
     if (!this.tableMap.has(tableName)) {
       const tableAdapter = new AirtableTableAdapter(
@@ -288,9 +244,6 @@ export class AirtableBaseAdapter implements IAirtableBase {
   }
 }
 
-/**
- * Factory function to create an Airtable base adapter from environment variables
- */
 export function createAirtableBaseFromEnv(
   tableNames: string[] = []
 ): AirtableBaseAdapter {
@@ -308,9 +261,6 @@ export function createAirtableBaseFromEnv(
   return new AirtableBaseAdapter(apiKey, baseId, tableNames);
 }
 
-/**
- * Factory function to create an Airtable base adapter and auto-load all tables
- */
 export async function createAirtableBaseWithAutoLoad(): Promise<AirtableBaseAdapter> {
   const base = createAirtableBaseFromEnv([]);
   await base.loadAllTables();

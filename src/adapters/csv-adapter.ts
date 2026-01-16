@@ -1,20 +1,3 @@
-/**
- * CSV Data Adapter
- *
- * This adapter loads CSV files as mock Airtable tables for fast local testing.
- * Each CSV file in the data directory becomes a table.
- *
- * Usage:
- *   1. Place CSV files in the data/ directory
- *   2. Set USE_CSV_DATA=true in .env
- *   3. Run: npm run local:csv
- *
- * CSV Format:
- *   - First row: field names
- *   - Optional 'id' column for record IDs (auto-generated if missing)
- *   - Filename (without .csv) = table name
- */
-
 import * as fs from "fs";
 import * as path from "path";
 import { parse } from "csv-parse/sync";
@@ -30,9 +13,6 @@ import {
 } from "../types";
 import { valueToString } from "../utils";
 
-/**
- * Adapter for CSV Record
- */
 class CsvRecordAdapter implements IAirtableRecord {
   public id: string;
   public name: string;
@@ -52,9 +32,6 @@ class CsvRecordAdapter implements IAirtableRecord {
     return valueToString(this.getCellValue(fieldNameOrId));
   }
 
-  /**
-   * Update fields (for write operations)
-   */
   _updateFields(fields: FieldSet): void {
     Object.assign(this.fields, fields);
     if (fields["Name"] !== undefined) {
@@ -62,17 +39,11 @@ class CsvRecordAdapter implements IAirtableRecord {
     }
   }
 
-  /**
-   * Get all fields for CSV export
-   */
   _getAllFields(): FieldSet {
     return { ...this.fields };
   }
 }
 
-/**
- * Adapter for CSV Query Result
- */
 class CsvQueryResultAdapter implements IAirtableQueryResult {
   public records: IAirtableRecord[];
   private recordMap: Map<string, IAirtableRecord>;
@@ -87,9 +58,6 @@ class CsvQueryResultAdapter implements IAirtableQueryResult {
   }
 }
 
-/**
- * Adapter for CSV Table
- */
 class CsvTableAdapter implements IAirtableTable {
   public id: string;
   public name: string;
@@ -112,9 +80,6 @@ class CsvTableAdapter implements IAirtableTable {
     this.loadFromCsv();
   }
 
-  /**
-   * Load records from CSV file
-   */
   private loadFromCsv(): void {
     if (!fs.existsSync(this.csvFilePath)) {
       console.warn(`CSV file not found: ${this.csvFilePath}`);
@@ -132,7 +97,6 @@ class CsvTableAdapter implements IAirtableTable {
       return;
     }
 
-    // Extract field names from first row
     this.fieldNames = Object.keys(rows[0]);
     this.fields = this.fieldNames.map((name, index) => ({
       id: `fld${index}`,
@@ -140,16 +104,12 @@ class CsvTableAdapter implements IAirtableTable {
       type: "singleLineText",
     }));
 
-    // Load records
     for (const row of rows) {
-      // Use 'id' column if exists, otherwise generate
       const id = row.id || row.Id || row.ID || `rec${this.nextRecordId++}`;
 
-      // Remove id from fields if it exists
       const fields: FieldSet = {};
       for (const [key, value] of Object.entries(row)) {
         if (key.toLowerCase() !== "id") {
-          // Try to parse numbers and booleans
           fields[key] = this.parseValue(value);
         }
       }
@@ -158,7 +118,6 @@ class CsvTableAdapter implements IAirtableTable {
       this.records.set(id, record);
     }
 
-    // Update nextRecordId to be after all existing records
     const maxId = Math.max(
       ...Array.from(this.records.keys()).map(
         (id) => parseInt(id.replace(/\D/g, "")) || 0
@@ -167,25 +126,19 @@ class CsvTableAdapter implements IAirtableTable {
     this.nextRecordId = maxId + 1;
   }
 
-  /**
-   * Parse string value to appropriate type
-   */
   private parseValue(value: string): unknown {
     if (value === "" || value === null || value === undefined) {
       return null;
     }
 
-    // Try boolean
     if (value.toLowerCase() === "true") return true;
     if (value.toLowerCase() === "false") return false;
 
-    // Try number
     const num = Number(value);
     if (!isNaN(num) && value.trim() !== "") {
       return num;
     }
 
-    // Try JSON array/object
     if (
       (value.startsWith("[") && value.endsWith("]")) ||
       (value.startsWith("{") && value.endsWith("}"))
@@ -193,16 +146,13 @@ class CsvTableAdapter implements IAirtableTable {
       try {
         return JSON.parse(value);
       } catch {
-        // Not valid JSON, return as string
+        // Not valid JSON
       }
     }
 
     return value;
   }
 
-  /**
-   * Save records back to CSV file
-   */
   private saveToCsv(): void {
     if (!this.autoSave) return;
 
@@ -228,13 +178,11 @@ class CsvTableAdapter implements IAirtableTable {
   ): Promise<IAirtableQueryResult> {
     let records = Array.from(this.records.values()) as IAirtableRecord[];
 
-    // Filter by recordIds if specified
     if (options?.recordIds) {
       const idSet = new Set(options.recordIds);
       records = records.filter((r) => idSet.has(r.id));
     }
 
-    // Sort if specified
     if (options?.sorts) {
       for (const sort of [...options.sorts].reverse()) {
         records.sort((a, b) => {
@@ -325,11 +273,6 @@ class CsvTableAdapter implements IAirtableTable {
   }
 }
 
-/**
- * Adapter for CSV Base
- *
- * Loads all CSV files from a directory as tables.
- */
 export class CsvBaseAdapter implements IAirtableBase {
   public tables: IAirtableTable[] = [];
   private tableMap: Map<string, IAirtableTable> = new Map();
@@ -342,9 +285,6 @@ export class CsvBaseAdapter implements IAirtableBase {
     this.loadTables();
   }
 
-  /**
-   * Load all CSV files from the data directory
-   */
   private loadTables(): void {
     if (!fs.existsSync(this.dataDir)) {
       console.warn(`Data directory not found: ${this.dataDir}`);
@@ -385,9 +325,6 @@ export class CsvBaseAdapter implements IAirtableBase {
   }
 }
 
-/**
- * Factory function to create a CSV base adapter from environment variables
- */
 export function createCsvBaseFromEnv(): CsvBaseAdapter {
   const dataDir = process.env.CSV_DATA_DIR || "./data";
   const autoSave = process.env.CSV_AUTO_SAVE === "true";

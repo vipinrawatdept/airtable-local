@@ -1,10 +1,3 @@
-/**
- * Mock Airtable Classes for Testing
- *
- * These mocks simulate Airtable's API for local testing with Jest.
- * They implement the interfaces defined in src/types/interfaces.ts
- */
-
 import {
   IAirtableBase,
   IAirtableTable,
@@ -17,9 +10,6 @@ import {
 } from "../../src/types";
 import { valueToString } from "../../src/utils";
 
-/**
- * Mock Record - Simulates an Airtable record
- */
 export class MockRecord implements IAirtableRecord {
   public id: string;
   public name: string;
@@ -40,9 +30,6 @@ export class MockRecord implements IAirtableRecord {
     return valueToString(this.getCellValue(fieldNameOrId));
   }
 
-  /**
-   * Update the record's fields (used internally by MockTable)
-   */
   _updateFields(fields: FieldSet): void {
     Object.assign(this.fields, fields);
     if (fields["Name"] !== undefined) {
@@ -51,9 +38,6 @@ export class MockRecord implements IAirtableRecord {
   }
 }
 
-/**
- * Mock Query Result - Simulates selectRecordsAsync result (internal use only)
- */
 class MockQueryResult implements IAirtableQueryResult {
   public records: MockRecord[];
   private recordMap: Map<string, MockRecord>;
@@ -68,9 +52,6 @@ class MockQueryResult implements IAirtableQueryResult {
   }
 }
 
-/**
- * Mock Field - Simulates an Airtable field definition (internal use only)
- */
 class MockField implements IAirtableField {
   public id: string;
   public name: string;
@@ -90,9 +71,6 @@ class MockField implements IAirtableField {
   }
 }
 
-/**
- * Mock Table - Simulates an Airtable table
- */
 export class MockTable implements IAirtableTable {
   public id: string;
   public name: string;
@@ -100,7 +78,6 @@ export class MockTable implements IAirtableTable {
   private records: Map<string, MockRecord>;
   private nextRecordId: number;
 
-  // Track method calls for testing
   public _calls: {
     selectRecordsAsync: RecordSelectOptions[];
     updateRecordAsync: Array<{ id: string; fields: FieldSet }>;
@@ -235,17 +212,11 @@ export class MockTable implements IAirtableTable {
     return field;
   }
 
-  /**
-   * Get a record by ID (useful for testing assertions)
-   */
   _getRecord(id: string): MockRecord | undefined {
     return this.records.get(id);
   }
 }
 
-/**
- * Mock Base - Simulates an Airtable base
- */
 export class MockBase implements IAirtableBase {
   public tables: MockTable[];
   private tableMap: Map<string, MockTable>;
@@ -268,9 +239,6 @@ export class MockBase implements IAirtableBase {
   }
 }
 
-/**
- * Mock Logger - Captures logs for testing assertions
- */
 export class MockLogger implements ILogger {
   public logs: Array<{ type: string; message: string; data?: unknown }> = [];
 
@@ -290,33 +258,21 @@ export class MockLogger implements ILogger {
     this.logs.push({ type: "warn", message });
   }
 
-  /**
-   * Clear all captured logs
-   */
   clear(): void {
     this.logs = [];
   }
 
-  /**
-   * Get logs of a specific type
-   */
   getLogsByType(
     type: "log" | "inspect" | "error" | "warn"
   ): Array<{ message: string; data?: unknown }> {
     return this.logs.filter((l) => l.type === type);
   }
 
-  /**
-   * Check if a message was logged
-   */
   hasLog(message: string): boolean {
     return this.logs.some((l) => l.message.includes(message));
   }
 }
 
-/**
- * Factory function to create a mock base with sample data
- */
 export function createMockBaseWithSampleData(): {
   base: MockBase;
   table: MockTable;

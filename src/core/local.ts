@@ -1,16 +1,3 @@
-/**
- * Local Runner
- *
- * Run your Airtable script locally using either:
- * - Real Airtable API (default)
- * - Local CSV files (faster, for testing)
- *
- * Usage:
- *   1. Copy .env.example to .env and fill in your credentials
- *   2. Run: npm run local          (uses Airtable API)
- *   3. Run: npm run local:csv      (uses local CSV files)
- */
-
 import "dotenv/config";
 import { runScript } from "./main-logic";
 import { NodeLogger } from "../utils";
@@ -28,7 +15,6 @@ async function main() {
   let base: IAirtableBase;
 
   if (useCsvData) {
-    // CSV Mode - Load from local CSV files
     logger.log("🔧 Starting local execution with CSV data...\n");
 
     const dataDir = process.env.CSV_DATA_DIR || "./data";
@@ -39,7 +25,6 @@ async function main() {
 
     base = createCsvBaseFromEnv();
   } else {
-    // API Mode - Use real Airtable API
     logger.log("🔧 Starting local execution with Airtable SDK...\n");
 
     const tableNames =
@@ -48,11 +33,9 @@ async function main() {
         .filter(Boolean) || [];
 
     if (tableNames.length > 0) {
-      // Use provided table names
       base = createAirtableBaseFromEnv(tableNames);
       logger.log(`📋 Pre-loaded tables: ${tableNames.join(", ")}\n`);
     } else {
-      // Auto-discover tables from Airtable Metadata API
       logger.log("🔍 Auto-discovering tables from Airtable...");
       try {
         base = await createAirtableBaseWithAutoLoad();
@@ -77,7 +60,6 @@ async function main() {
   }
 
   try {
-    // Run the main script
     await runScript(base, logger);
 
     logger.log("\n🎉 Local execution completed!");

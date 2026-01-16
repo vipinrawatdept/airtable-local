@@ -1,9 +1,5 @@
 import { ILogger } from "../types";
 
-/**
- * NodeLogger - Console-based logger for local testing
- * Uses Node.js console methods
- */
 export class NodeLogger implements ILogger {
   private prefix: string;
 
@@ -31,10 +27,6 @@ export class NodeLogger implements ILogger {
   }
 }
 
-/**
- * AirtableLogger - Logger for Airtable Scripting environment
- * Uses console.log for compatibility
- */
 export class AirtableLogger implements ILogger {
   log(message: string): void {
     console.log(message);
