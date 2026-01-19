@@ -1,8 +1,4 @@
-import {
-  runScript,
-  processTableRecords,
-  createSampleRecords,
-} from "../src/core";
+import { runScript, processTableRecords, createSampleRecords } from "../src/core";
 import {
   MockBase,
   MockTable,
@@ -110,9 +106,9 @@ describe("processTableRecords", () => {
   });
 
   it("should throw error for non-existent table", async () => {
-    await expect(
-      processTableRecords(mockBase, "NonExistent", mockLogger)
-    ).rejects.toThrow('Table "NonExistent" not found');
+    await expect(processTableRecords(mockBase, "NonExistent", mockLogger)).rejects.toThrow(
+      'Table "NonExistent" not found'
+    );
   });
 });
 
@@ -129,24 +125,14 @@ describe("createSampleRecords", () => {
   });
 
   it("should create the specified number of records", async () => {
-    const createdIds = await createSampleRecords(
-      mockBase,
-      "Tasks",
-      3,
-      mockLogger
-    );
+    const createdIds = await createSampleRecords(mockBase, "Tasks", 3, mockLogger);
 
     expect(createdIds).toHaveLength(3);
     expect(mockTable._calls.createRecordAsync).toHaveLength(3);
   });
 
   it("should return valid record IDs", async () => {
-    const createdIds = await createSampleRecords(
-      mockBase,
-      "Tasks",
-      2,
-      mockLogger
-    );
+    const createdIds = await createSampleRecords(mockBase, "Tasks", 2, mockLogger);
 
     for (const id of createdIds) {
       expect(id).toMatch(/^rec\d+$/);
@@ -252,11 +238,7 @@ describe("MockTable", () => {
       sorts: [{ field: "Name", direction: "asc" }],
     });
 
-    expect(result.records.map((r) => r.name)).toEqual([
-      "Alice",
-      "Bob",
-      "Charlie",
-    ]);
+    expect(result.records.map((r) => r.name)).toEqual(["Alice", "Bob", "Charlie"]);
   });
 
   it("should create records", async () => {
@@ -297,9 +279,7 @@ describe("MockBase", () => {
   it("should throw error for non-existent table", () => {
     const base = new MockBase([]);
 
-    expect(() => base.getTable("NonExistent")).toThrow(
-      'Table "NonExistent" not found'
-    );
+    expect(() => base.getTable("NonExistent")).toThrow('Table "NonExistent" not found');
   });
 });
 
@@ -311,22 +291,21 @@ describe("MockLogger", () => {
     logger.error("Error message");
     logger.warn("Warning message");
 
-    expect(logger.logs).toHaveLength(3);
+    expect(logger.logs).toHaveLength(1);
+    expect(logger.errors).toHaveLength(1);
+    expect(logger.warnings).toHaveLength(1);
     expect(logger.hasLog("Test message")).toBe(true);
-    expect(logger.hasLog("Error message")).toBe(true);
-    expect(logger.hasLog("Warning message")).toBe(true);
   });
 
-  it("should filter by log type", () => {
+  it("should filter errors", () => {
     const logger = new MockLogger();
 
     logger.log("Log 1");
     logger.error("Error 1");
     logger.log("Log 2");
 
-    const errors = logger.getLogsByType("error");
-    expect(errors).toHaveLength(1);
-    expect(errors[0].message).toBe("Error 1");
+    expect(logger.errors).toHaveLength(1);
+    expect(logger.errors[0]).toBe("Error 1");
   });
 
   it("should clear logs", () => {

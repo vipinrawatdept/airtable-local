@@ -1,9 +1,5 @@
 import Airtable from "airtable";
-import type {
-  FieldSet as AirtableFieldSet,
-  Records,
-  Record as AirtableRecord,
-} from "airtable";
+import type { FieldSet as AirtableFieldSet, Records, Record as AirtableRecord } from "airtable";
 import {
   IAirtableBase,
   IAirtableTable,
@@ -62,9 +58,7 @@ class AirtableTableAdapter implements IAirtableTable {
     this.table = airtableBase(tableName);
   }
 
-  async selectRecordsAsync(
-    options?: RecordSelectOptions
-  ): Promise<IAirtableQueryResult> {
+  async selectRecordsAsync(options?: RecordSelectOptions): Promise<IAirtableQueryResult> {
     const selectOptions: Airtable.SelectOptions<AirtableFieldSet> = {};
 
     if (options?.fields) {
@@ -89,24 +83,23 @@ class AirtableTableAdapter implements IAirtableTable {
     return new AirtableQueryResultAdapter(records);
   }
 
-  async updateRecordAsync(
-    recordOrId: string | IAirtableRecord,
-    fields: FieldSet
-  ): Promise<void> {
+  async updateRecordAsync(recordOrId: string | IAirtableRecord, fields: FieldSet): Promise<void> {
     const id = typeof recordOrId === "string" ? recordOrId : recordOrId.id;
     await this.table.update(id, fields as AirtableFieldSet);
   }
 
-  async updateRecordsAsync(
-    records: Array<{ id: string; fields: FieldSet }>
-  ): Promise<void> {
+  async updateRecordsAsync(records: Array<{ id: string; fields: FieldSet }>): Promise<void> {
     const batchSize = 10;
+    const rateLimitDelay = 200;
     for (let i = 0; i < records.length; i += batchSize) {
       const batch = records.slice(i, i + batchSize).map((r) => ({
         id: r.id,
         fields: r.fields as AirtableFieldSet,
       }));
       await this.table.update(batch);
+      if (i + batchSize < records.length) {
+        await new Promise((resolve) => setTimeout(resolve, rateLimitDelay));
+      }
     }
   }
 
@@ -115,10 +108,9 @@ class AirtableTableAdapter implements IAirtableTable {
     return record.id;
   }
 
-  async createRecordsAsync(
-    records: Array<{ fields: FieldSet }>
-  ): Promise<string[]> {
+  async createRecordsAsync(records: Array<{ fields: FieldSet }>): Promise<string[]> {
     const batchSize = 10;
+    const rateLimitDelay = 200;
     const createdIds: string[] = [];
 
     for (let i = 0; i < records.length; i += batchSize) {
@@ -127,6 +119,9 @@ class AirtableTableAdapter implements IAirtableTable {
       }));
       const created = await this.table.create(batch);
       createdIds.push(...created.map((r) => r.id));
+      if (i + batchSize < records.length) {
+        await new Promise((resolve) => setTimeout(resolve, rateLimitDelay));
+      }
     }
 
     return createdIds;
@@ -137,14 +132,16 @@ class AirtableTableAdapter implements IAirtableTable {
     await this.table.destroy(id);
   }
 
-  async deleteRecordsAsync(
-    recordsOrIds: Array<string | IAirtableRecord>
-  ): Promise<void> {
+  async deleteRecordsAsync(recordsOrIds: Array<string | IAirtableRecord>): Promise<void> {
     const ids = recordsOrIds.map((r) => (typeof r === "string" ? r : r.id));
     const batchSize = 10;
+    const rateLimitDelay = 200;
     for (let i = 0; i < ids.length; i += batchSize) {
       const batch = ids.slice(i, i + batchSize);
       await this.table.destroy(batch);
+      if (i + batchSize < ids.length) {
+        await new Promise((resolve) => setTimeout(resolve, rateLimitDelay));
+      }
     }
   }
 
@@ -172,10 +169,7 @@ export class AirtableBaseAdapter implements IAirtableBase {
 
     // Create table adapters for specified tables
     for (const tableName of tableNames) {
-      const tableAdapter = new AirtableTableAdapter(
-        tableName,
-        this.airtableBase
-      );
+      const tableAdapter = new AirtableTableAdapter(tableName, this.airtableBase);
       this.tables.push(tableAdapter);
       this.tableMap.set(tableName, tableAdapter);
     }
@@ -209,10 +203,7 @@ export class AirtableBaseAdapter implements IAirtableBase {
 
     for (const tableName of tableNames) {
       if (!this.tableMap.has(tableName)) {
-        const tableAdapter = new AirtableTableAdapter(
-          tableName,
-          this.airtableBase
-        );
+        const tableAdapter = new AirtableTableAdapter(tableName, this.airtableBase);
         this.tables.push(tableAdapter);
         this.tableMap.set(tableName, tableAdapter);
       }
@@ -234,19 +225,14 @@ export class AirtableBaseAdapter implements IAirtableBase {
 
   addTable(tableName: string): void {
     if (!this.tableMap.has(tableName)) {
-      const tableAdapter = new AirtableTableAdapter(
-        tableName,
-        this.airtableBase
-      );
+      const tableAdapter = new AirtableTableAdapter(tableName, this.airtableBase);
       this.tables.push(tableAdapter);
       this.tableMap.set(tableName, tableAdapter);
     }
   }
 }
 
-export function createAirtableBaseFromEnv(
-  tableNames: string[] = []
-): AirtableBaseAdapter {
+export function createAirtableBaseFromEnv(tableNames: string[] = []): AirtableBaseAdapter {
   const apiKey = process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
 

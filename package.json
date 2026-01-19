@@ -6,12 +6,17 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "build": "esbuild src/core/entry.ts --bundle --outfile=dist/script.js --format=iife --target=es2020",
     "watch": "esbuild src/core/entry.ts --bundle --outfile=dist/script.js --format=iife --target=es2020 --watch",
     "local": "npx ts-node src/core/local.ts",
     "local:csv": "USE_CSV_DATA=true npx ts-node src/core/local.ts",
     "local:watch": "npx ts-node-dev --respawn src/core/local.ts",
-    "download": "npx ts-node src/utils/download-tables.ts"
+    "download": "npx ts-node src/utils/download-tables.ts",
+    "lint": "eslint src/**/*.ts test/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts test/**/*.ts --fix",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\""
   },
   "keywords": [
     "airtable",
@@ -24,8 +29,13 @@
     "@types/airtable": "^0.10.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.0.8",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "esbuild": "^0.27.2",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
     "jest": "^30.2.0",
+    "prettier": "^3.4.0",
     "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",

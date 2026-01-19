@@ -58,12 +58,7 @@ class MockField implements IAirtableField {
   public type: string;
   public options?: unknown;
 
-  constructor(
-    id: string,
-    name: string,
-    type: string = "singleLineText",
-    options?: unknown
-  ) {
+  constructor(id: string, name: string, type: string = "singleLineText", options?: unknown) {
     this.id = id;
     this.name = name;
     this.type = type;
@@ -110,9 +105,7 @@ export class MockTable implements IAirtableTable {
     };
   }
 
-  async selectRecordsAsync(
-    options?: RecordSelectOptions
-  ): Promise<MockQueryResult> {
+  async selectRecordsAsync(options?: RecordSelectOptions): Promise<MockQueryResult> {
     this._calls.selectRecordsAsync.push(options || {});
 
     let records = Array.from(this.records.values());
@@ -138,25 +131,18 @@ export class MockTable implements IAirtableTable {
     return new MockQueryResult(records);
   }
 
-  async updateRecordAsync(
-    recordOrId: string | IAirtableRecord,
-    fields: FieldSet
-  ): Promise<void> {
+  async updateRecordAsync(recordOrId: string | IAirtableRecord, fields: FieldSet): Promise<void> {
     const id = typeof recordOrId === "string" ? recordOrId : recordOrId.id;
     this._calls.updateRecordAsync.push({ id, fields });
 
     const record = this.records.get(id);
     if (!record) {
-      throw new Error(
-        `Record with ID "${id}" not found in table "${this.name}"`
-      );
+      throw new Error(`Record with ID "${id}" not found in table "${this.name}"`);
     }
     record._updateFields(fields);
   }
 
-  async updateRecordsAsync(
-    records: Array<{ id: string; fields: FieldSet }>
-  ): Promise<void> {
+  async updateRecordsAsync(records: Array<{ id: string; fields: FieldSet }>): Promise<void> {
     for (const { id, fields } of records) {
       await this.updateRecordAsync(id, fields);
     }
@@ -171,9 +157,7 @@ export class MockTable implements IAirtableTable {
     return id;
   }
 
-  async createRecordsAsync(
-    records: Array<{ fields: FieldSet }>
-  ): Promise<string[]> {
+  async createRecordsAsync(records: Array<{ fields: FieldSet }>): Promise<string[]> {
     const ids: string[] = [];
     for (const { fields } of records) {
       const id = await this.createRecordAsync(fields);
@@ -187,25 +171,19 @@ export class MockTable implements IAirtableTable {
     this._calls.deleteRecordAsync.push(id);
 
     if (!this.records.has(id)) {
-      throw new Error(
-        `Record with ID "${id}" not found in table "${this.name}"`
-      );
+      throw new Error(`Record with ID "${id}" not found in table "${this.name}"`);
     }
     this.records.delete(id);
   }
 
-  async deleteRecordsAsync(
-    recordsOrIds: Array<string | IAirtableRecord>
-  ): Promise<void> {
+  async deleteRecordsAsync(recordsOrIds: Array<string | IAirtableRecord>): Promise<void> {
     for (const recordOrId of recordsOrIds) {
       await this.deleteRecordAsync(recordOrId);
     }
   }
 
   getField(nameOrId: string): IAirtableField {
-    const field = this.fields.find(
-      (f) => f.name === nameOrId || f.id === nameOrId
-    );
+    const field = this.fields.find((f) => f.name === nameOrId || f.id === nameOrId);
     if (!field) {
       throw new Error(`Field "${nameOrId}" not found in table "${this.name}"`);
     }
@@ -237,39 +215,47 @@ export class MockBase implements IAirtableBase {
     }
     return table;
   }
+
+  addTable(name: string, records: Array<Record<string, unknown>>): MockTable {
+    const mockRecords = records.map(
+      (r) => new MockRecord((r.id as string) || `rec${Math.random().toString(36).slice(2)}`, r)
+    );
+    const table = new MockTable(name, name, mockRecords);
+    this.tables.push(table);
+    this.tableMap.set(name, table);
+    return table;
+  }
 }
 
 export class MockLogger implements ILogger {
-  public logs: Array<{ type: string; message: string; data?: unknown }> = [];
+  public logs: string[] = [];
+  public errors: string[] = [];
+  public warnings: string[] = [];
 
   log(message: string): void {
-    this.logs.push({ type: "log", message });
+    this.logs.push(message);
   }
 
   inspect(data: unknown, label?: string): void {
-    this.logs.push({ type: "inspect", message: label || "", data });
+    this.logs.push(label || JSON.stringify(data));
   }
 
   error(message: string): void {
-    this.logs.push({ type: "error", message });
+    this.errors.push(message);
   }
 
   warn(message: string): void {
-    this.logs.push({ type: "warn", message });
+    this.warnings.push(message);
   }
 
   clear(): void {
     this.logs = [];
-  }
-
-  getLogsByType(
-    type: "log" | "inspect" | "error" | "warn"
-  ): Array<{ message: string; data?: unknown }> {
-    return this.logs.filter((l) => l.type === type);
+    this.errors = [];
+    this.warnings = [];
   }
 
   hasLog(message: string): boolean {
-    return this.logs.some((l) => l.message.includes(message));
+    return this.logs.some((l) => l.includes(message));
   }
 }
 
@@ -309,11 +295,7 @@ export function createMockBaseWithSampleData(): {
   const fields = [
     new MockField("fldName", "Name", "singleLineText"),
     new MockField("fldStatus", "Status", "singleSelect", {
-      choices: [
-        { name: "Pending" },
-        { name: "In Progress" },
-        { name: "Completed" },
-      ],
+      choices: [{ name: "Pending" }, { name: "In Progress" }, { name: "Completed" }],
     }),
     new MockField("fldPriority", "Priority", "singleSelect", {
       choices: [{ name: "Low" }, { name: "Medium" }, { name: "High" }],

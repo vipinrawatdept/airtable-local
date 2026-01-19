@@ -1,0 +1,1410 @@
+id,url,campaign_brief,api_input,llm_input,output,Record ID
+rec2xpNCj66eY1M0R,https://uem.muse.vip.ebay.com/authoring/canvas/5dd63a88-eed5-4f79-8de8-b25e1350b7b8,"Campaign Summary:
+This campaign promotes basketball memorabilia and collectible card game releases, highlighting autographed basketball gear, rare rookie cards, and new drops like Pokémon Destined Rivals and Magic the Gathering x Final Fantasy. It also features a limited-time auction of autographed sports collectibles, encouraging customers to shop, pre-order, or bid to enhance their collections.
+
+Countries:
+US
+
+Audience/Target Demographic:
+Collectible enthusiasts — basketball memorabilia, collectible card games (Pokémon, Magic the Gathering), sports auctions
+
+Summary of Requests:
+What are you requesting? Copy
+Develop copy for one subject line, one pre-header, and five modules corresponding to hero and banner images with promotional messaging, including disclaimers where applicable.
+
+Modules:
+
+Module 1:
+Primary message: All-time greats for your lineup
+Secondary message: Bring the playoff heat home. Don’t miss out on autographed basketball gear, rare rookie cards, and more.
+Disclaimer: N/A
+Notes: Hero module emphasizing exclusivity and breadth of basketball collectibles; encourage immediate shopping.
+Include: Basketball memorabilia
+URLs:
+- https://www.ebay.com/vlp/collectibles
+
+Module 2:
+Primary message: Big alliances. Bigger battles.
+Secondary message: Team Rocket vs. Trainers—pick a side with Pokémon Destined Rivals.
+Disclaimer: N/A
+Notes: Promote pre-orders for Pokémon card drop; build excitement for the release.
+Include: Pokémon Scarlet and Violet Destined Rivals
+URLs:
+- https://www.ebay.com/sch/i.html?_nkw=Pok%C3%A9mon+Scarlet+and+Violet+Destined+Rivals&_sacat=261044&_from=R40&_trksid=p2334524.m570.l1313&_udlo=10&_odkw=MGT+Final+Fantasy&\_osacat=261044
+
+Module 3:
+Primary message: MTG x Final Fantasy is here
+Secondary message: Saddle up your chocobo for this highly anticipated drop.
+Disclaimer: N/A
+Notes: Highlight Magic the Gathering x Final Fantasy collectible card release with pre-order CTA.
+Include: Magic the Gathering x Final Fantasy
+URLs:
+- https://www.ebay.com/sch/261044/i.html?_nkw=MGT+Final+Fantasy&_from=R40&\_udlo=10
+
+Module 4:
+Primary message: The signature says it all
+Secondary message: Go all in with autographed finds from Inscriptagraphs.
+Disclaimer: Ends 6/8.
+Notes: Urgency added with auction end date; promote autographed sports memorabilia auction bids.
+Include: Inscriptagraphs autographed collectibles
+URLs:
+- https://www.ebay.com/e/sports-fan-shop/collectibles-auction-hub
+
+Design Considerations:
+N/A
+
+Copy Considerations:
+- Use clear, value-first, and friendly tone.
+- Avoid excessive punctuation or all-caps.
+- Focus on specificity and verifiable claims.
+- Emphasize urgency only where auction end date is specified.
+- Maintain concise, engaging language suitable for collectible enthusiasts.
+- Avoid sustainability or greenwashing terms.
+
+Legal Requirements:
+Include the auction end date as indicated: ""Ends 6/8."" for the Inscriptagraphs auction module.
+All other legal disclaimers are N/A.
+
+URLs – Rank in Priority:
+1. https://www.ebay.com/vlp/collectibles
+2. https://www.ebay.com/sch/i.html?_nkw=Pok%C3%A9mon+Scarlet+and+Violet+Destined+Rivals&_sacat=261044&_from=R40&_trksid=p2334524.m570.l1313&_udlo=10&_odkw=MGT+Final+Fantasy&\_osacat=261044
+3. https://www.ebay.com/sch/261044/i.html?_nkw=MGT+Final+Fantasy&_from=R40&\_udlo=10
+4. https://www.ebay.com/e/sports-fan-shop/collectibles-auction-hub
+
+Product Recommendations – Rank in Priority:
+1. Basketball memorabilia
+2. Pokémon Scarlet and Violet Destined Rivals
+3. Magic the Gathering x Final Fantasy
+4. Inscriptagraphs autographed collectibles
+","{
+  ""model"": ""hubgpt"",
+  ""streaming"": false,
+  ""modules"": [
+    {
+      ""id"": ""0"",
+      ""elements"": [
+        {
+          ""name"": ""subjectLine"",
+          ""type"": ""text"",
+          ""maxLength"": 60
+        },
+        {
+          ""name"": ""preHeader"",
+          ""type"": ""text"",
+          ""maxLength"": 100
+        }
+      ],
+      ""outline"": ""Subject line: From the court to your collection 🏀\nPreheader: Find epic basketball memorabilia, plus hot card drops.""
+    },
+    {
+      ""id"": ""1"",
+      ""module_type"": ""Email Hero Module"",
+      ""module_type_view"": ""Marketing Image Fullbleed"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""type"": ""text"",
+          ""maxLength"": 35
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""type"": ""text"",
+          ""maxLength"": 30
+        },
+        {
+          ""name"": ""description1"",
+          ""type"": ""text"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""cta1Text"",
+          ""type"": ""text"",
+          ""maxLength"": 30
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 200
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 60
+        },
+        {
+          ""name"": ""image2Alt"",
+          ""type"": ""text"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Url"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""type"": ""text"",
+          ""maxLength"": 200
+        },
+        {
+          ""name"": ""cta1Url"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        }
+      ],
+      ""outline"": ""HL: All-time greats for your lineup. SL: Bring the playoff heat home. Don’t miss out on autographed basketball gear, rare rookie cards, and more. CTA: Shop now""
+    },
+    {
+      ""id"": ""2"",
+      ""module_type"": ""Email Banner Image"",
+      ""module_type_view"": ""Lifestyle Left River"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""type"": ""text"",
+          ""maxLength"": 40
+        },
+        {
+          ""name"": ""ctaText"",
+          ""type"": ""text"",
+          ""maxLength"": 22
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""type"": ""text"",
+          ""maxLength"": 22
+        },
+        {
+          ""name"": ""description1"",
+          ""type"": ""text"",
+          ""maxLength"": 25
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 70
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 44
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""type"": ""text"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Url"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        }
+      ],
+      ""outline"": ""HL: Big alliances. Bigger battles. | SL: Team Rocket vs. Trainers—pick a side with Pokémon Destined Rivals. | CTA: Pre-order now""
+    },
+    {
+      ""id"": ""3"",
+      ""module_type"": ""Email Banner Image"",
+      ""module_type_view"": ""Lifestyle Right River"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""type"": ""text"",
+          ""maxLength"": 40
+        },
+        {
+          ""name"": ""ctaText"",
+          ""type"": ""text"",
+          ""maxLength"": 22
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""type"": ""text"",
+          ""maxLength"": 22
+        },
+        {
+          ""name"": ""description1"",
+          ""type"": ""text"",
+          ""maxLength"": 25
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 70
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 44
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""type"": ""text"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Url"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        }
+      ],
+      ""outline"": ""HL: MTG x Final Fantasy is here | SL: Saddle up your chocobo for this highly anticipated drop. | CTA: Pre-order now""
+    },
+    {
+      ""id"": ""4"",
+      ""module_type"": ""Email Banner Image"",
+      ""module_type_view"": ""Lifestyle Left River"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""type"": ""text"",
+          ""maxLength"": 40
+        },
+        {
+          ""name"": ""ctaText"",
+          ""type"": ""text"",
+          ""maxLength"": 22
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""type"": ""text"",
+          ""maxLength"": 22
+        },
+        {
+          ""name"": ""description1"",
+          ""type"": ""text"",
+          ""maxLength"": 25
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 70
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 44
+        },
+        {
+          ""name"": ""image1Url"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""type"": ""text"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        }
+      ],
+      ""outline"": ""HL: The signature says it all  | SL: Go all in with autographed finds from Inscriptagraphs. | CTA: Bid now""
+    }
+  ]
+}","[
+  {
+    ""moduleId"": ""0"",
+    ""prompts"": [
+      {
+        ""role"": ""system"",
+        ""content"": ""\n# Content Generation Task\n\n## Role\nYou are an expert email copywriter trained in clear, impactful and concise content for an email layout component based on a provided outline, layout details, and additional context. Follow the instructions carefully to ensure the content is unique, engaging, polished, professional and aligned with the overall email strategy.\n\n## General Requirements\n1. Adhere to Layout Schema: The content must strictly follow the provided layout schema. Do not alter the structure, remove elements, or change element names\n2. Ensure each 'text' and 'richtext' element's content is within its specified max-length (this is a hard limit). Aim to fill the available space with suitable content\n3. Avoid repetition and do not repeat or reuse phrases to keep the email engaging and varied\n4. Use sentence case for all generated content: capitalize ONLY the first word of each sentence and proper nouns (brands, names, people) only, even in CTA and title elements\n5. Do not use more than one exclamation mark per module. 1 is not a target but a maximum\n6. No emojis unless explicitly stated\n7. Module 0 is always subject line and preheader; Module 1 is always an attention-grabbing hero module\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Data Type Handling\nFor elements with data type \""text\"":\n- Generate suitable text content, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- CTA elements should be concise and actionable, with a maximum of 3 words\n\nFor elements with data type \""richtext\"":\n- Generate suitable text content and format using Markdown syntax, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- Use newlines if necessary\n- NEVER use bold markdown syntax\n- NEVER use single-asterisk italics or lists\n- NEVER add links unless they have been requested in the outline\n\nFor each element of type \""image\""\n- Generate a suitable concise search prompt to find a relevant image, and add a value property containing this search prompt\n- This value should be short and uniquely distinct, ensuring no two search prompts are exactly or even nearly the same\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Input/output format example\n\n**Input:**\nOutline: \""Hero Section: Introducing our new summer collection with vibrant styles\""\n\nElement Requirements:\n[\n  {\n    \""name\"": \""headline\"",\n    \""type\"": \""text\"",\n    \""maxLength\"": 50\n  },\n  {\n    \""name\"": \""subline\"",\n    \""type\"": \""text\"", \n    \""maxLength\"": 100\n  },\n  {\n    \""name\"": \""descriptionRichText\"",\n    \""type\"": \""richtext\"",\n    \""maxLength\"": 200\n  }\n]\n\n**Output:**\n{\n  \""headline\"": \""Content of the headline goes here\"",\n  \""subline\"": \""Content of the subline goes here\"",\n  \""descriptionRichText\"": \""For richtext elements\\nUse newlines if necessary\""\n}\n""
+      },
+      {
+        ""role"": ""user"",
+        ""content"": ""\n## Content Guidelines\n\n## Tone of Voice\nApply a **friendly** tone consistently across all generated text to maintain a uniform style throughout the email\n\n## List of elements\n[{\""name\"":\""subjectLine\"",\""type\"":\""text\"",\""maxLength\"":60},{\""name\"":\""preHeader\"",\""type\"":\""text\"",\""maxLength\"":100}]\n\n## Outline\nSubject line: From the court to your collection 🏀\nPreheader: Find epic basketball memorabilia, plus hot card drops.\n""
+      }
+    ],
+    ""timestamp"": ""2025-08-29T02:02:51.986Z""
+  },
+  {
+    ""moduleId"": ""1"",
+    ""prompts"": [
+      {
+        ""role"": ""system"",
+        ""content"": ""\n# Content Generation Task\n\n## Role\nYou are an expert email copywriter trained in clear, impactful and concise content for an email layout component based on a provided outline, layout details, and additional context. Follow the instructions carefully to ensure the content is unique, engaging, polished, professional and aligned with the overall email strategy.\n\n## General Requirements\n1. Adhere to Layout Schema: The content must strictly follow the provided layout schema. Do not alter the structure, remove elements, or change element names\n2. Ensure each 'text' and 'richtext' element's content is within its specified max-length (this is a hard limit). Aim to fill the available space with suitable content\n3. Avoid repetition and do not repeat or reuse phrases to keep the email engaging and varied\n4. Use sentence case for all generated content: capitalize ONLY the first word of each sentence and proper nouns (brands, names, people) only, even in CTA and title elements\n5. Do not use more than one exclamation mark per module. 1 is not a target but a maximum\n6. No emojis unless explicitly stated\n7. Module 0 is always subject line and preheader; Module 1 is always an attention-grabbing hero module\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Data Type Handling\nFor elements with data type \""text\"":\n- Generate suitable text content, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- CTA elements should be concise and actionable, with a maximum of 3 words\n\nFor elements with data type \""richtext\"":\n- Generate suitable text content and format using Markdown syntax, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- Use newlines if necessary\n- NEVER use bold markdown syntax\n- NEVER use single-asterisk italics or lists\n- NEVER add links unless they have been requested in the outline\n\nFor each element of type \""image\""\n- Generate a suitable concise search prompt to find a relevant image, and add a value property containing this search prompt\n- This value should be short and uniquely distinct, ensuring no two search prompts are exactly or even nearly the same\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Input/output format example\n\n**Input:**\nOutline: \""Hero Section: Introducing our new summer collection with vibrant styles\""\n\nElement Requirements:\n[\n  {\n    \""name\"": \""headline\"",\n    \""type\"": \""text\"",\n    \""maxLength\"": 50\n  },\n  {\n    \""name\"": \""subline\"",\n    \""type\"": \""text\"", \n    \""maxLength\"": 100\n  },\n  {\n    \""name\"": \""descriptionRichText\"",\n    \""type\"": \""richtext\"",\n    \""maxLength\"": 200\n  }\n]\n\n**Output:**\n{\n  \""headline\"": \""Content of the headline goes here\"",\n  \""subline\"": \""Content of the subline goes here\"",\n  \""descriptionRichText\"": \""For richtext elements\\nUse newlines if necessary\""\n}\n""
+      },
+      {
+        ""role"": ""user"",
+        ""content"": ""\n## Content Guidelines\n\n## Tone of Voice\nApply a **friendly** tone consistently across all generated text to maintain a uniform style throughout the email\n\n## List of elements\n[{\""name\"":\""headline\"",\""type\"":\""text\"",\""maxLength\"":35},{\""name\"":\""cta2Text\"",\""type\"":\""text\"",\""maxLength\"":30},{\""name\"":\""description1\"",\""type\"":\""text\"",\""maxLength\"":100},{\""name\"":\""cta1Text\"",\""type\"":\""text\"",\""maxLength\"":30},{\""name\"":\""sublineRichText\"",\""type\"":\""richtext\"",\""maxLength\"":200},{\""name\"":\""finePrintRichText\"",\""type\"":\""richtext\"",\""maxLength\"":60},{\""name\"":\""image2Alt\"",\""type\"":\""text\"",\""maxLength\"":100},{\""name\"":\""image1Url\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""image1Alt\"",\""type\"":\""text\"",\""maxLength\"":200},{\""name\"":\""cta1Url\"",\""type\"":\""url\"",\""maxLength\"":100}]\n\n## Outline\nHL: All-time greats for your lineup. SL: Bring the playoff heat home. Don’t miss out on autographed basketball gear, rare rookie cards, and more. CTA: Shop now\n""
+      }
+    ],
+    ""timestamp"": ""2025-08-29T02:02:51.986Z""
+  },
+  {
+    ""moduleId"": ""2"",
+    ""prompts"": [
+      {
+        ""role"": ""system"",
+        ""content"": ""\n# Content Generation Task\n\n## Role\nYou are an expert email copywriter trained in clear, impactful and concise content for an email layout component based on a provided outline, layout details, and additional context. Follow the instructions carefully to ensure the content is unique, engaging, polished, professional and aligned with the overall email strategy.\n\n## General Requirements\n1. Adhere to Layout Schema: The content must strictly follow the provided layout schema. Do not alter the structure, remove elements, or change element names\n2. Ensure each 'text' and 'richtext' element's content is within its specified max-length (this is a hard limit). Aim to fill the available space with suitable content\n3. Avoid repetition and do not repeat or reuse phrases to keep the email engaging and varied\n4. Use sentence case for all generated content: capitalize ONLY the first word of each sentence and proper nouns (brands, names, people) only, even in CTA and title elements\n5. Do not use more than one exclamation mark per module. 1 is not a target but a maximum\n6. No emojis unless explicitly stated\n7. Module 0 is always subject line and preheader; Module 1 is always an attention-grabbing hero module\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Data Type Handling\nFor elements with data type \""text\"":\n- Generate suitable text content, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- CTA elements should be concise and actionable, with a maximum of 3 words\n\nFor elements with data type \""richtext\"":\n- Generate suitable text content and format using Markdown syntax, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- Use newlines if necessary\n- NEVER use bold markdown syntax\n- NEVER use single-asterisk italics or lists\n- NEVER add links unless they have been requested in the outline\n\nFor each element of type \""image\""\n- Generate a suitable concise search prompt to find a relevant image, and add a value property containing this search prompt\n- This value should be short and uniquely distinct, ensuring no two search prompts are exactly or even nearly the same\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Input/output format example\n\n**Input:**\nOutline: \""Hero Section: Introducing our new summer collection with vibrant styles\""\n\nElement Requirements:\n[\n  {\n    \""name\"": \""headline\"",\n    \""type\"": \""text\"",\n    \""maxLength\"": 50\n  },\n  {\n    \""name\"": \""subline\"",\n    \""type\"": \""text\"", \n    \""maxLength\"": 100\n  },\n  {\n    \""name\"": \""descriptionRichText\"",\n    \""type\"": \""richtext\"",\n    \""maxLength\"": 200\n  }\n]\n\n**Output:**\n{\n  \""headline\"": \""Content of the headline goes here\"",\n  \""subline\"": \""Content of the subline goes here\"",\n  \""descriptionRichText\"": \""For richtext elements\\nUse newlines if necessary\""\n}\n""
+      },
+      {
+        ""role"": ""user"",
+        ""content"": ""\n## Content Guidelines\n\n## Tone of Voice\nApply a **friendly** tone consistently across all generated text to maintain a uniform style throughout the email\n\n## List of elements\n[{\""name\"":\""headline\"",\""type\"":\""text\"",\""maxLength\"":40},{\""name\"":\""ctaText\"",\""type\"":\""text\"",\""maxLength\"":22},{\""name\"":\""cta2Text\"",\""type\"":\""text\"",\""maxLength\"":22},{\""name\"":\""description1\"",\""type\"":\""text\"",\""maxLength\"":25},{\""name\"":\""sublineRichText\"",\""type\"":\""richtext\"",\""maxLength\"":70},{\""name\"":\""finePrintRichText\"",\""type\"":\""richtext\"",\""maxLength\"":44},{\""name\"":\""image1Alt\"",\""type\"":\""text\"",\""maxLength\"":100},{\""name\"":\""image1Url\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""ctaUrl\"",\""type\"":\""url\"",\""maxLength\"":100}]\n\n## Outline\nHL: Big alliances. Bigger battles. | SL: Team Rocket vs. Trainers—pick a side with Pokémon Destined Rivals. | CTA: Pre-order now\n""
+      }
+    ],
+    ""timestamp"": ""2025-08-29T02:02:51.986Z""
+  },
+  {
+    ""moduleId"": ""3"",
+    ""prompts"": [
+      {
+        ""role"": ""system"",
+        ""content"": ""\n# Content Generation Task\n\n## Role\nYou are an expert email copywriter trained in clear, impactful and concise content for an email layout component based on a provided outline, layout details, and additional context. Follow the instructions carefully to ensure the content is unique, engaging, polished, professional and aligned with the overall email strategy.\n\n## General Requirements\n1. Adhere to Layout Schema: The content must strictly follow the provided layout schema. Do not alter the structure, remove elements, or change element names\n2. Ensure each 'text' and 'richtext' element's content is within its specified max-length (this is a hard limit). Aim to fill the available space with suitable content\n3. Avoid repetition and do not repeat or reuse phrases to keep the email engaging and varied\n4. Use sentence case for all generated content: capitalize ONLY the first word of each sentence and proper nouns (brands, names, people) only, even in CTA and title elements\n5. Do not use more than one exclamation mark per module. 1 is not a target but a maximum\n6. No emojis unless explicitly stated\n7. Module 0 is always subject line and preheader; Module 1 is always an attention-grabbing hero module\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Data Type Handling\nFor elements with data type \""text\"":\n- Generate suitable text content, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- CTA elements should be concise and actionable, with a maximum of 3 words\n\nFor elements with data type \""richtext\"":\n- Generate suitable text content and format using Markdown syntax, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- Use newlines if necessary\n- NEVER use bold markdown syntax\n- NEVER use single-asterisk italics or lists\n- NEVER add links unless they have been requested in the outline\n\nFor each element of type \""image\""\n- Generate a suitable concise search prompt to find a relevant image, and add a value property containing this search prompt\n- This value should be short and uniquely distinct, ensuring no two search prompts are exactly or even nearly the same\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Input/output format example\n\n**Input:**\nOutline: \""Hero Section: Introducing our new summer collection with vibrant styles\""\n\nElement Requirements:\n[\n  {\n    \""name\"": \""headline\"",\n    \""type\"": \""text\"",\n    \""maxLength\"": 50\n  },\n  {\n    \""name\"": \""subline\"",\n    \""type\"": \""text\"", \n    \""maxLength\"": 100\n  },\n  {\n    \""name\"": \""descriptionRichText\"",\n    \""type\"": \""richtext\"",\n    \""maxLength\"": 200\n  }\n]\n\n**Output:**\n{\n  \""headline\"": \""Content of the headline goes here\"",\n  \""subline\"": \""Content of the subline goes here\"",\n  \""descriptionRichText\"": \""For richtext elements\\nUse newlines if necessary\""\n}\n""
+      },
+      {
+        ""role"": ""user"",
+        ""content"": ""\n## Content Guidelines\n\n## Tone of Voice\nApply a **friendly** tone consistently across all generated text to maintain a uniform style throughout the email\n\n## List of elements\n[{\""name\"":\""headline\"",\""type\"":\""text\"",\""maxLength\"":40},{\""name\"":\""ctaText\"",\""type\"":\""text\"",\""maxLength\"":22},{\""name\"":\""cta2Text\"",\""type\"":\""text\"",\""maxLength\"":22},{\""name\"":\""description1\"",\""type\"":\""text\"",\""maxLength\"":25},{\""name\"":\""sublineRichText\"",\""type\"":\""richtext\"",\""maxLength\"":70},{\""name\"":\""finePrintRichText\"",\""type\"":\""richtext\"",\""maxLength\"":44},{\""name\"":\""image1Alt\"",\""type\"":\""text\"",\""maxLength\"":100},{\""name\"":\""image1Url\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""ctaUrl\"",\""type\"":\""url\"",\""maxLength\"":100}]\n\n## Outline\nHL: MTG x Final Fantasy is here | SL: Saddle up your chocobo for this highly anticipated drop. | CTA: Pre-order now\n""
+      }
+    ],
+    ""timestamp"": ""2025-08-29T02:02:51.986Z""
+  },
+  {
+    ""moduleId"": ""4"",
+    ""prompts"": [
+      {
+        ""role"": ""system"",
+        ""content"": ""\n# Content Generation Task\n\n## Role\nYou are an expert email copywriter trained in clear, impactful and concise content for an email layout component based on a provided outline, layout details, and additional context. Follow the instructions carefully to ensure the content is unique, engaging, polished, professional and aligned with the overall email strategy.\n\n## General Requirements\n1. Adhere to Layout Schema: The content must strictly follow the provided layout schema. Do not alter the structure, remove elements, or change element names\n2. Ensure each 'text' and 'richtext' element's content is within its specified max-length (this is a hard limit). Aim to fill the available space with suitable content\n3. Avoid repetition and do not repeat or reuse phrases to keep the email engaging and varied\n4. Use sentence case for all generated content: capitalize ONLY the first word of each sentence and proper nouns (brands, names, people) only, even in CTA and title elements\n5. Do not use more than one exclamation mark per module. 1 is not a target but a maximum\n6. No emojis unless explicitly stated\n7. Module 0 is always subject line and preheader; Module 1 is always an attention-grabbing hero module\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Data Type Handling\nFor elements with data type \""text\"":\n- Generate suitable text content, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- CTA elements should be concise and actionable, with a maximum of 3 words\n\nFor elements with data type \""richtext\"":\n- Generate suitable text content and format using Markdown syntax, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- Use newlines if necessary\n- NEVER use bold markdown syntax\n- NEVER use single-asterisk italics or lists\n- NEVER add links unless they have been requested in the outline\n\nFor each element of type \""image\""\n- Generate a suitable concise search prompt to find a relevant image, and add a value property containing this search prompt\n- This value should be short and uniquely distinct, ensuring no two search prompts are exactly or even nearly the same\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Input/output format example\n\n**Input:**\nOutline: \""Hero Section: Introducing our new summer collection with vibrant styles\""\n\nElement Requirements:\n[\n  {\n    \""name\"": \""headline\"",\n    \""type\"": \""text\"",\n    \""maxLength\"": 50\n  },\n  {\n    \""name\"": \""subline\"",\n    \""type\"": \""text\"", \n    \""maxLength\"": 100\n  },\n  {\n    \""name\"": \""descriptionRichText\"",\n    \""type\"": \""richtext\"",\n    \""maxLength\"": 200\n  }\n]\n\n**Output:**\n{\n  \""headline\"": \""Content of the headline goes here\"",\n  \""subline\"": \""Content of the subline goes here\"",\n  \""descriptionRichText\"": \""For richtext elements\\nUse newlines if necessary\""\n}\n""
+      },
+      {
+        ""role"": ""user"",
+        ""content"": ""\n## Content Guidelines\n\n## Tone of Voice\nApply a **friendly** tone consistently across all generated text to maintain a uniform style throughout the email\n\n## List of elements\n[{\""name\"":\""headline\"",\""type\"":\""text\"",\""maxLength\"":40},{\""name\"":\""ctaText\"",\""type\"":\""text\"",\""maxLength\"":22},{\""name\"":\""cta2Text\"",\""type\"":\""text\"",\""maxLength\"":22},{\""name\"":\""description1\"",\""type\"":\""text\"",\""maxLength\"":25},{\""name\"":\""sublineRichText\"",\""type\"":\""richtext\"",\""maxLength\"":70},{\""name\"":\""finePrintRichText\"",\""type\"":\""richtext\"",\""maxLength\"":44},{\""name\"":\""image1Url\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""image1Alt\"",\""type\"":\""text\"",\""maxLength\"":100},{\""name\"":\""ctaUrl\"",\""type\"":\""url\"",\""maxLength\"":100}]\n\n## Outline\nHL: The signature says it all  | SL: Go all in with autographed finds from Inscriptagraphs. | CTA: Bid now\n""
+      }
+    ],
+    ""timestamp"": ""2025-08-29T02:02:51.986Z""
+  }
+]","{
+  ""modules"": [
+    {
+      ""id"": ""0"",
+      ""elements"": [
+        {
+          ""name"": ""subjectLine"",
+          ""value"": ""From the court to your collection 🏀""
+        },
+        {
+          ""name"": ""preHeader"",
+          ""value"": ""Find epic basketball memorabilia, plus hot card drops.""
+        }
+      ]
+    },
+    {
+      ""id"": ""1"",
+      ""module_type"": ""Email Hero Module"",
+      ""module_type_view"": ""Marketing Image Fullbleed"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""value"": ""All-time greats for your lineup""
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""value"": ""Shop now""
+        },
+        {
+          ""name"": ""description1"",
+          ""value"": ""Lorem Ipsum""
+        },
+        {
+          ""name"": ""cta1Text"",
+          ""value"": ""Shop now""
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""value"": ""Bring the playoff heat home. Don’t miss out on autographed basketball gear, rare rookie cards, and more.""
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""value"": """"
+        },
+        {
+          ""name"": ""image2Alt"",
+          ""value"": ""https://www.ebay.com/""
+        },
+        {
+          ""name"": ""image1Url"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/vlp/collectibles"",
+              ""l10n"": {
+                ""sourceLocale"": ""en""
+              },
+              ""id"": ""f318216b-13a8-4434-9252-475e0a25e668""
+            }
+          }
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""value"": ""A graded 1986 Michael Jordan Fleer Sticker basketball trading card, a graded 2003 Topps LeBron James basketball trading card, and a signed Luka Dončić basketball against a white background.""
+        },
+        {
+          ""name"": ""cta1Url"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/vlp/collectibles"",
+              ""l10n"": {
+                ""sourceLocale"": ""en""
+              },
+              ""id"": ""f7de5945-367a-44bd-b3a6-5fc47d3660c0""
+            }
+          }
+        }
+      ]
+    },
+    {
+      ""id"": ""2"",
+      ""module_type"": ""Email Banner Image"",
+      ""module_type_view"": ""Lifestyle Left River"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""value"": ""Big alliances. Bigger battles.""
+        },
+        {
+          ""name"": ""ctaText"",
+          ""value"": ""Pre-order now""
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""value"": ""Shop now""
+        },
+        {
+          ""name"": ""description1"",
+          ""value"": ""Lorem Ipsum""
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""value"": ""Team Rocket vs. Trainers—pick a side with Pokémon Destined Rivals.""
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""value"": """"
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""value"": ""The Pokémon Destined Rivals booster box against a maroon background.""
+        },
+        {
+          ""name"": ""image1Url"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/sch/i.html?_nkw=Pok%C3%A9mon+Scarlet+and+Violet+Destined+Rivals&_sacat=261044&_from=R40&_trksid=p2334524.m570.l1313&_udlo=10&_odkw=MGT+Final+Fantasy&_osacat=261044"",
+              ""l10n"": {
+                ""sourceLocale"": ""en"",
+                ""translations"": []
+              },
+              ""id"": ""7f2b2be4-ec36-4b30-8183-c3a8c22f9f98""
+            }
+          }
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/sch/i.html?_nkw=Pok%C3%A9mon+Scarlet+and+Violet+Destined+Rivals&_sacat=261044&_from=R40&_trksid=p2334524.m570.l1313&_udlo=10&_odkw=MGT+Final+Fantasy&_osacat=261044"",
+              ""l10n"": {
+                ""sourceLocale"": ""en"",
+                ""translations"": []
+              },
+              ""id"": ""84515712-22ec-49a2-9ca2-2b2990b3a162""
+            }
+          }
+        }
+      ]
+    },
+    {
+      ""id"": ""3"",
+      ""module_type"": ""Email Banner Image"",
+      ""module_type_view"": ""Lifestyle Right River"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""value"": ""MTG x Final Fantasy is here""
+        },
+        {
+          ""name"": ""ctaText"",
+          ""value"": ""Pre-order now""
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""value"": ""Shop now""
+        },
+        {
+          ""name"": ""description1"",
+          ""value"": ""Lorem Ipsum""
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""value"": ""Saddle up your chocobo for this highly anticipated drop.""
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""value"": """"
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""value"": ""The Magic the Gathering x Final Fantasy booster box against a blue background.""
+        },
+        {
+          ""name"": ""image1Url"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/sch/261044/i.html?_nkw=MGT+Final+Fantasy&_from=R40&_udlo=10"",
+              ""l10n"": {
+                ""sourceLocale"": ""en""
+              },
+              ""id"": ""f90c5935-ec87-43f7-bb40-3b25da418283""
+            }
+          }
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/sch/261044/i.html?_nkw=MGT+Final+Fantasy&_from=R40&_udlo=10"",
+              ""l10n"": {
+                ""sourceLocale"": ""en""
+              },
+              ""id"": ""0e940840-da21-4b59-a991-a6e00240c4e7""
+            }
+          }
+        }
+      ]
+    },
+    {
+      ""id"": ""4"",
+      ""module_type"": ""Email Banner Image"",
+      ""module_type_view"": ""Lifestyle Left River"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""value"": ""The signature says it all ""
+        },
+        {
+          ""name"": ""ctaText"",
+          ""value"": ""Bid now""
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""value"": ""Shop now""
+        },
+        {
+          ""name"": ""description1"",
+          ""value"": ""Lorem Ipsum""
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""value"": ""Go all in with autographed finds from Inscriptagraphs.""
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""value"": ""Ends 6/8.""
+        },
+        {
+          ""name"": ""image1Url"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/e/sports-fan-shop/collectibles-auction-hub"",
+              ""l10n"": {
+                ""sourceLocale"": ""en""
+              },
+              ""id"": ""47736640-5c04-48a4-96e5-aa8fc1baa548""
+            }
+          }
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""value"": ""The interior of the Inscriptagraphs Memorabilia store, with walls covered in a variety of sports collectibles, jerseys, and posters. At the front is a signed and framed photo of Las Vegas Aces player A'ja Wilson. ""
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/e/sports-fan-shop/collectibles-auction-hub"",
+              ""l10n"": {
+                ""sourceLocale"": ""en""
+              },
+              ""id"": ""6eeba16b-9076-4db2-a2a6-e62d55268eb7""
+            }
+          }
+        }
+      ]
+    }
+  ]
+}",rec2xpNCj66eY1M0R
+recO58qelmsew1Uaw,https://uem.muse.vip.ebay.com/authoring/canvas/9276df19-4ff3-4bf6-973b-570941c0b2fc,"Campaign Summary:
+This campaign promotes the launch of the highly anticipated 2025 Topps Baseball Series 2 trading cards, alongside exclusive collectibles from Goldin auctions, a new Lorcana card game set, and key legendary sports memorabilia auctions. It aims to drive conversions by showcasing fresh releases, rare items, and auction opportunities with an enthusiastic tone appealing to collectible enthusiasts.
+
+Countries:
+US
+
+Audience/Target Demographic:
+Collectible enthusiasts — baseball trading cards, sports memorabilia, collectible card games
+
+Summary of Requests:
+What are you requesting? Copy
+Create an email with subject line, pre-header, and five modules. 
+Each module should have a primary message, secondary message, and disclaimers if applicable.
+
+Modules:
+
+Module 1:
+Primary message: 2025 Topps brings the heat
+Secondary message: The wait is finally over for the highly anticipated Baseball Series 2 release. Don’t miss the chance to pull modern legends and rising stars.
+Disclaimer: N/A
+Notes: Hero role module; drive excitement; include references to both legends and new stars.
+Include: 2025 Topps Baseball Series 2 trading cards, baseball sports trading cards
+URLs:
+https://www.ebay.com/e/sports-fan-shop/sports-trading-card-new-releases
+
+Module 2:
+Primary message: Grails with a legacy
+Secondary message: Bring home elite collectibles from the Goldin 100.
+Disclaimer: N/A
+Notes: Emphasize exclusivity; auction focus.
+Include: Goldin 100 collectibles
+URLs:
+https://goldin.co/buy/?Auctions=202505-0919-4006-a0ab510c-b1a9-46c6-9b67-a96fc7cd6d34
+
+Module 3:
+Primary message: Restore balance to the realm of Lorcana
+Secondary message: Defend the throne from darkness with the Reign of Jafar set.
+Disclaimer: N/A
+Notes: Promote collectible card game launch; use adventure/defense theme.
+Include: Lorcana Reign of Jafar collectible card game
+URLs:
+https://www.ebay.com/e/toys/card-game-new-arrivals
+
+Module 4:
+Primary message: Top-shelf hits you can't pass up
+Secondary message: Swing for the fences with these iconic collectibles.
+Disclaimer: Don’t miss legendary Michael Jordan finds at the Upper Deck auction. Ends 6/22. Find rarities at the 4 Sharp Corners Select Showcase. Ends 6/29.
+Notes: Promote two auctions; emphasize urgency (end dates).
+Include: Michael Jordan memorabilia, Upper Deck auction, 4 Sharp Corners Select Showcase
+URLs:
+https://www.ebay.com/e/sports-fan-shop/collectibles-auction-hub
+
+Design Considerations:
+N/A
+
+Copy Considerations:
+Use clear, value-first, friendly, and concise tone matching eBay’s brand voice.
+Avoid all-caps and spammy punctuation.
+Avoid greenwashing or sustainability claims.
+Ensure excitement around new trading card drops, exclusive auctions, and collectibles.
+Respect module hierarchy and content structure.
+Include event end dates as urgency cues.
+
+Legal Requirements:
+N/A
+
+URLs – Rank in Priority:
+1. https://www.ebay.com/e/sports-fan-shop/sports-trading-card-new-releases
+2. https://goldin.co/buy/?Auctions=202505-0919-4006-a0ab510c-b1a9-46c6-9b67-a96fc7cd6d34
+3. https://www.ebay.com/e/toys/card-game-new-arrivals
+4. https://www.ebay.com/e/sports-fan-shop/collectibles-auction-hub
+
+Product Recommendations – Rank in Priority:
+1. 2025 Topps Baseball Series 2 trading cards
+2. Goldin 100 collectibles
+3. Lorcana Reign of Jafar card game
+4. Michael Jordan memorabilia / Upper Deck auction / 4 Sharp Corners Select Showcase
+
+Modules:  
+Module 1:  
+Primary message: 2025 Topps brings the heat  
+Secondary message: The wait is finally over for the highly anticipated Baseball Series 2 release. Don’t miss the chance to pull modern legends and rising stars.  
+Disclaimer: N/A  
+Notes: Hero module; focus on broad appeal and excitement for new release.  
+Include: 2025 Topps baseball cards  
+URLs: https://www.ebay.com/e/sports-fan-shop/sports-trading-card-new-releases
+
+Module 2:  
+Primary message: Grails with a legacy  
+Secondary message: Bring home elite collectibles from the Goldin 100.  
+Disclaimer: N/A  
+Notes: Auction emphasis; exclusive collectible items.  
+Include: Goldin 100 collectibles  
+URLs: https://goldin.co/buy/?Auctions=202505-0919-4006-a0ab510c-b1a9-46c6-9b67-a96fc7cd6d34
+
+Module 3:  
+Primary message: Restore balance to the realm of Lorcana  
+Secondary message: Defend the throne from darkness with the Reign of Jafar set.  
+Disclaimer: N/A  
+Notes: Promote collectible card game; adventurous tone.  
+Include: Lorcana Reign of Jafar  
+URLs: https://www.ebay.com/e/toys/card-game-new-arrivals
+
+Module 4:  
+Primary message: Top-shelf hits you can't pass up  
+Secondary message: Swing for the fences with these iconic collectibles.  
+Disclaimer: Don’t miss legendary Michael Jordan finds at the Upper Deck auction. Ends 6/22. Find rarities at the 4 Sharp Corners Select Showcase. Ends 6/29.  
+Notes: Promote two auctions with end dates; urgency tone.  
+Include: Michael Jordan memorabilia, Upper Deck auction, 4 Sharp Corners Select Showcase  
+URLs: https://www.ebay.com/e/sports-fan-shop/collectibles-auction-hub
+","{
+  ""model"": ""hubgpt"",
+  ""streaming"": false,
+  ""modules"": [
+    {
+      ""id"": ""0"",
+      ""outline"": ""Subject line: Stack your lineup with big-league cards\nPreheader: Scout baseball's finest, plus more must-have collectibles."",
+      ""elements"": [
+        {
+          ""name"": ""subjectLine"",
+          ""type"": ""text"",
+          ""maxLength"": 60
+        },
+        {
+          ""name"": ""preHeader"",
+          ""type"": ""text"",
+          ""maxLength"": 100
+        }
+      ]
+    },
+    {
+      ""id"": ""1"",
+      ""module_type"": ""Email Hero Module"",
+      ""module_type_view"": ""Marketing Image Fullbleed"",
+      ""outline"": ""HL: 2025 Topps brings the heat. SL: The wait is finally over for the highly anticipated Baseball Series 2 release. Don’t miss the chance to pull modern legends and rising stars. CTA: Let's go"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""type"": ""text"",
+          ""maxLength"": 35
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""type"": ""text"",
+          ""maxLength"": 30
+        },
+        {
+          ""name"": ""description1"",
+          ""type"": ""text"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""cta1Text"",
+          ""type"": ""text"",
+          ""maxLength"": 30
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 200
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 60
+        },
+        {
+          ""name"": ""cta1Url"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Url"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""type"": ""text"",
+          ""maxLength"": 200
+        }
+      ]
+    },
+    {
+      ""id"": ""2"",
+      ""module_type"": ""Email Banner Image"",
+      ""module_type_view"": ""Lifestyle Left River"",
+      ""outline"": ""HL: Grails with a legacy | SL: Bring home elite collectibles from the Goldin 100. | CTA: Bid now"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""type"": ""text"",
+          ""maxLength"": 40
+        },
+        {
+          ""name"": ""ctaText"",
+          ""type"": ""text"",
+          ""maxLength"": 22
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""type"": ""text"",
+          ""maxLength"": 22
+        },
+        {
+          ""name"": ""description1"",
+          ""type"": ""text"",
+          ""maxLength"": 25
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 70
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 44
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Url"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""type"": ""text"",
+          ""maxLength"": 100
+        }
+      ]
+    },
+    {
+      ""id"": ""3"",
+      ""module_type"": ""Email Banner Image"",
+      ""module_type_view"": ""Lifestyle Right River"",
+      ""outline"": ""HL: Restore balance to the realm of Lorcana | SL: Defend the throne from darkness with the Reign of Jafar set. | CTA: Order now"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""type"": ""text"",
+          ""maxLength"": 40
+        },
+        {
+          ""name"": ""ctaText"",
+          ""type"": ""text"",
+          ""maxLength"": 22
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""type"": ""text"",
+          ""maxLength"": 22
+        },
+        {
+          ""name"": ""description1"",
+          ""type"": ""text"",
+          ""maxLength"": 25
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 70
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 44
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Url"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""type"": ""text"",
+          ""maxLength"": 100
+        }
+      ]
+    },
+    {
+      ""id"": ""4"",
+      ""module_type"": ""Email Item Tiles"",
+      ""module_type_view"": ""Categories 2UP"",
+      ""outline"": ""HL: Top-shelf hits you can't pass up | SL: Swing for the fences with these iconic collectibles. | CTA: Bid now"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""type"": ""text"",
+          ""maxLength"": 35
+        },
+        {
+          ""name"": ""ctaText"",
+          ""type"": ""text"",
+          ""maxLength"": 20
+        },
+        {
+          ""name"": ""cta1Text"",
+          ""type"": ""text"",
+          ""maxLength"": 30
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""type"": ""text"",
+          ""maxLength"": 30
+        },
+        {
+          ""name"": ""title1"",
+          ""type"": ""text"",
+          ""maxLength"": 25
+        },
+        {
+          ""name"": ""title2"",
+          ""type"": ""text"",
+          ""maxLength"": 25
+        },
+        {
+          ""name"": ""title3"",
+          ""type"": ""text"",
+          ""maxLength"": 25
+        },
+        {
+          ""name"": ""title4"",
+          ""type"": ""text"",
+          ""maxLength"": 25
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 120
+        },
+        {
+          ""name"": ""description1RichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 115
+        },
+        {
+          ""name"": ""description2RichText"",
+          ""type"": ""richtext"",
+          ""maxLength"": 115
+        },
+        {
+          ""name"": ""image1Url"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image2Url"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""type"": ""url"",
+          ""maxLength"": 100
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""type"": ""text"",
+          ""maxLength"": 200
+        },
+        {
+          ""name"": ""image2Alt"",
+          ""type"": ""text"",
+          ""maxLength"": 200
+        }
+      ]
+    }
+  ]
+}","[
+  {
+    ""moduleId"": ""0"",
+    ""prompts"": [
+      {
+        ""role"": ""system"",
+        ""content"": ""\n# Content Generation Task\n\n## Role\nYou are an expert email copywriter trained in clear, impactful and concise content for an email layout component based on a provided outline, layout details, and additional context. Follow the instructions carefully to ensure the content is unique, engaging, polished, professional and aligned with the overall email strategy.\n\n## General Requirements\n1. Adhere to Layout Schema: The content must strictly follow the provided layout schema. Do not alter the structure, remove elements, or change element names\n2. Ensure each 'text' and 'richtext' element's content is within its specified max-length (this is a hard limit). Aim to fill the available space with suitable content\n3. Avoid repetition and do not repeat or reuse phrases to keep the email engaging and varied\n4. Use sentence case for all generated content: capitalize ONLY the first word of each sentence and proper nouns (brands, names, people) only, even in CTA and title elements\n5. Do not use more than one exclamation mark per module. 1 is not a target but a maximum\n6. No emojis unless explicitly stated\n7. Module 0 is always subject line and preheader; Module 1 is always an attention-grabbing hero module\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Data Type Handling\nFor elements with data type \""text\"":\n- Generate suitable text content, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- CTA elements should be concise and actionable, with a maximum of 3 words\n\nFor elements with data type \""richtext\"":\n- Generate suitable text content and format using Markdown syntax, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- Use newlines if necessary\n- NEVER use bold markdown syntax\n- NEVER use single-asterisk italics or lists\n- NEVER add links unless they have been requested in the outline\n\nFor each element of type \""image\""\n- Generate a suitable concise search prompt to find a relevant image, and add a value property containing this search prompt\n- This value should be short and uniquely distinct, ensuring no two search prompts are exactly or even nearly the same\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Input/output format example\n\n**Input:**\nOutline: \""Hero Section: Introducing our new summer collection with vibrant styles\""\n\nElement Requirements:\n[\n  {\n    \""name\"": \""headline\"",\n    \""type\"": \""text\"",\n    \""maxLength\"": 50\n  },\n  {\n    \""name\"": \""subline\"",\n    \""type\"": \""text\"", \n    \""maxLength\"": 100\n  },\n  {\n    \""name\"": \""descriptionRichText\"",\n    \""type\"": \""richtext\"",\n    \""maxLength\"": 200\n  }\n]\n\n**Output:**\n{\n  \""headline\"": \""Content of the headline goes here\"",\n  \""subline\"": \""Content of the subline goes here\"",\n  \""descriptionRichText\"": \""For richtext elements\\nUse newlines if necessary\""\n}\n""
+      },
+      {
+        ""role"": ""user"",
+        ""content"": ""\n## Content Guidelines\n\n## Tone of Voice\nApply a **friendly** tone consistently across all generated text to maintain a uniform style throughout the email\n\n## List of elements\n[{\""name\"":\""subjectLine\"",\""type\"":\""text\"",\""maxLength\"":60},{\""name\"":\""preHeader\"",\""type\"":\""text\"",\""maxLength\"":100}]\n\n## Outline\nSubject line: Stack your lineup with big-league cards\nPreheader: Scout baseball's finest, plus more must-have collectibles.\n""
+      }
+    ],
+    ""timestamp"": ""2025-08-26T16:37:17.535Z""
+  },
+  {
+    ""moduleId"": ""1"",
+    ""prompts"": [
+      {
+        ""role"": ""system"",
+        ""content"": ""\n# Content Generation Task\n\n## Role\nYou are an expert email copywriter trained in clear, impactful and concise content for an email layout component based on a provided outline, layout details, and additional context. Follow the instructions carefully to ensure the content is unique, engaging, polished, professional and aligned with the overall email strategy.\n\n## General Requirements\n1. Adhere to Layout Schema: The content must strictly follow the provided layout schema. Do not alter the structure, remove elements, or change element names\n2. Ensure each 'text' and 'richtext' element's content is within its specified max-length (this is a hard limit). Aim to fill the available space with suitable content\n3. Avoid repetition and do not repeat or reuse phrases to keep the email engaging and varied\n4. Use sentence case for all generated content: capitalize ONLY the first word of each sentence and proper nouns (brands, names, people) only, even in CTA and title elements\n5. Do not use more than one exclamation mark per module. 1 is not a target but a maximum\n6. No emojis unless explicitly stated\n7. Module 0 is always subject line and preheader; Module 1 is always an attention-grabbing hero module\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Data Type Handling\nFor elements with data type \""text\"":\n- Generate suitable text content, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- CTA elements should be concise and actionable, with a maximum of 3 words\n\nFor elements with data type \""richtext\"":\n- Generate suitable text content and format using Markdown syntax, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- Use newlines if necessary\n- NEVER use bold markdown syntax\n- NEVER use single-asterisk italics or lists\n- NEVER add links unless they have been requested in the outline\n\nFor each element of type \""image\""\n- Generate a suitable concise search prompt to find a relevant image, and add a value property containing this search prompt\n- This value should be short and uniquely distinct, ensuring no two search prompts are exactly or even nearly the same\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Input/output format example\n\n**Input:**\nOutline: \""Hero Section: Introducing our new summer collection with vibrant styles\""\n\nElement Requirements:\n[\n  {\n    \""name\"": \""headline\"",\n    \""type\"": \""text\"",\n    \""maxLength\"": 50\n  },\n  {\n    \""name\"": \""subline\"",\n    \""type\"": \""text\"", \n    \""maxLength\"": 100\n  },\n  {\n    \""name\"": \""descriptionRichText\"",\n    \""type\"": \""richtext\"",\n    \""maxLength\"": 200\n  }\n]\n\n**Output:**\n{\n  \""headline\"": \""Content of the headline goes here\"",\n  \""subline\"": \""Content of the subline goes here\"",\n  \""descriptionRichText\"": \""For richtext elements\\nUse newlines if necessary\""\n}\n""
+      },
+      {
+        ""role"": ""user"",
+        ""content"": ""\n## Content Guidelines\n\n## Tone of Voice\nApply a **friendly** tone consistently across all generated text to maintain a uniform style throughout the email\n\n## List of elements\n[{\""name\"":\""headline\"",\""type\"":\""text\"",\""maxLength\"":35},{\""name\"":\""cta2Text\"",\""type\"":\""text\"",\""maxLength\"":30},{\""name\"":\""description1\"",\""type\"":\""text\"",\""maxLength\"":100},{\""name\"":\""cta1Text\"",\""type\"":\""text\"",\""maxLength\"":30},{\""name\"":\""sublineRichText\"",\""type\"":\""richtext\"",\""maxLength\"":200},{\""name\"":\""finePrintRichText\"",\""type\"":\""richtext\"",\""maxLength\"":60},{\""name\"":\""cta1Url\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""image1Url\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""image1Alt\"",\""type\"":\""text\"",\""maxLength\"":200}]\n\n## Outline\nHL: 2025 Topps brings the heat. SL: The wait is finally over for the highly anticipated Baseball Series 2 release. Don’t miss the chance to pull modern legends and rising stars. CTA: Let's go\n""
+      }
+    ],
+    ""timestamp"": ""2025-08-26T16:37:17.535Z""
+  },
+  {
+    ""moduleId"": ""2"",
+    ""prompts"": [
+      {
+        ""role"": ""system"",
+        ""content"": ""\n# Content Generation Task\n\n## Role\nYou are an expert email copywriter trained in clear, impactful and concise content for an email layout component based on a provided outline, layout details, and additional context. Follow the instructions carefully to ensure the content is unique, engaging, polished, professional and aligned with the overall email strategy.\n\n## General Requirements\n1. Adhere to Layout Schema: The content must strictly follow the provided layout schema. Do not alter the structure, remove elements, or change element names\n2. Ensure each 'text' and 'richtext' element's content is within its specified max-length (this is a hard limit). Aim to fill the available space with suitable content\n3. Avoid repetition and do not repeat or reuse phrases to keep the email engaging and varied\n4. Use sentence case for all generated content: capitalize ONLY the first word of each sentence and proper nouns (brands, names, people) only, even in CTA and title elements\n5. Do not use more than one exclamation mark per module. 1 is not a target but a maximum\n6. No emojis unless explicitly stated\n7. Module 0 is always subject line and preheader; Module 1 is always an attention-grabbing hero module\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Data Type Handling\nFor elements with data type \""text\"":\n- Generate suitable text content, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- CTA elements should be concise and actionable, with a maximum of 3 words\n\nFor elements with data type \""richtext\"":\n- Generate suitable text content and format using Markdown syntax, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- Use newlines if necessary\n- NEVER use bold markdown syntax\n- NEVER use single-asterisk italics or lists\n- NEVER add links unless they have been requested in the outline\n\nFor each element of type \""image\""\n- Generate a suitable concise search prompt to find a relevant image, and add a value property containing this search prompt\n- This value should be short and uniquely distinct, ensuring no two search prompts are exactly or even nearly the same\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Input/output format example\n\n**Input:**\nOutline: \""Hero Section: Introducing our new summer collection with vibrant styles\""\n\nElement Requirements:\n[\n  {\n    \""name\"": \""headline\"",\n    \""type\"": \""text\"",\n    \""maxLength\"": 50\n  },\n  {\n    \""name\"": \""subline\"",\n    \""type\"": \""text\"", \n    \""maxLength\"": 100\n  },\n  {\n    \""name\"": \""descriptionRichText\"",\n    \""type\"": \""richtext\"",\n    \""maxLength\"": 200\n  }\n]\n\n**Output:**\n{\n  \""headline\"": \""Content of the headline goes here\"",\n  \""subline\"": \""Content of the subline goes here\"",\n  \""descriptionRichText\"": \""For richtext elements\\nUse newlines if necessary\""\n}\n""
+      },
+      {
+        ""role"": ""user"",
+        ""content"": ""\n## Content Guidelines\n\n## Tone of Voice\nApply a **friendly** tone consistently across all generated text to maintain a uniform style throughout the email\n\n## List of elements\n[{\""name\"":\""headline\"",\""type\"":\""text\"",\""maxLength\"":40},{\""name\"":\""ctaText\"",\""type\"":\""text\"",\""maxLength\"":22},{\""name\"":\""cta2Text\"",\""type\"":\""text\"",\""maxLength\"":22},{\""name\"":\""description1\"",\""type\"":\""text\"",\""maxLength\"":25},{\""name\"":\""sublineRichText\"",\""type\"":\""richtext\"",\""maxLength\"":70},{\""name\"":\""finePrintRichText\"",\""type\"":\""richtext\"",\""maxLength\"":44},{\""name\"":\""ctaUrl\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""image1Url\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""image1Alt\"",\""type\"":\""text\"",\""maxLength\"":100}]\n\n## Outline\nHL: Grails with a legacy | SL: Bring home elite collectibles from the Goldin 100. | CTA: Bid now\n""
+      }
+    ],
+    ""timestamp"": ""2025-08-26T16:37:17.536Z""
+  },
+  {
+    ""moduleId"": ""3"",
+    ""prompts"": [
+      {
+        ""role"": ""system"",
+        ""content"": ""\n# Content Generation Task\n\n## Role\nYou are an expert email copywriter trained in clear, impactful and concise content for an email layout component based on a provided outline, layout details, and additional context. Follow the instructions carefully to ensure the content is unique, engaging, polished, professional and aligned with the overall email strategy.\n\n## General Requirements\n1. Adhere to Layout Schema: The content must strictly follow the provided layout schema. Do not alter the structure, remove elements, or change element names\n2. Ensure each 'text' and 'richtext' element's content is within its specified max-length (this is a hard limit). Aim to fill the available space with suitable content\n3. Avoid repetition and do not repeat or reuse phrases to keep the email engaging and varied\n4. Use sentence case for all generated content: capitalize ONLY the first word of each sentence and proper nouns (brands, names, people) only, even in CTA and title elements\n5. Do not use more than one exclamation mark per module. 1 is not a target but a maximum\n6. No emojis unless explicitly stated\n7. Module 0 is always subject line and preheader; Module 1 is always an attention-grabbing hero module\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Data Type Handling\nFor elements with data type \""text\"":\n- Generate suitable text content, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- CTA elements should be concise and actionable, with a maximum of 3 words\n\nFor elements with data type \""richtext\"":\n- Generate suitable text content and format using Markdown syntax, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- Use newlines if necessary\n- NEVER use bold markdown syntax\n- NEVER use single-asterisk italics or lists\n- NEVER add links unless they have been requested in the outline\n\nFor each element of type \""image\""\n- Generate a suitable concise search prompt to find a relevant image, and add a value property containing this search prompt\n- This value should be short and uniquely distinct, ensuring no two search prompts are exactly or even nearly the same\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Input/output format example\n\n**Input:**\nOutline: \""Hero Section: Introducing our new summer collection with vibrant styles\""\n\nElement Requirements:\n[\n  {\n    \""name\"": \""headline\"",\n    \""type\"": \""text\"",\n    \""maxLength\"": 50\n  },\n  {\n    \""name\"": \""subline\"",\n    \""type\"": \""text\"", \n    \""maxLength\"": 100\n  },\n  {\n    \""name\"": \""descriptionRichText\"",\n    \""type\"": \""richtext\"",\n    \""maxLength\"": 200\n  }\n]\n\n**Output:**\n{\n  \""headline\"": \""Content of the headline goes here\"",\n  \""subline\"": \""Content of the subline goes here\"",\n  \""descriptionRichText\"": \""For richtext elements\\nUse newlines if necessary\""\n}\n""
+      },
+      {
+        ""role"": ""user"",
+        ""content"": ""\n## Content Guidelines\n\n## Tone of Voice\nApply a **friendly** tone consistently across all generated text to maintain a uniform style throughout the email\n\n## List of elements\n[{\""name\"":\""headline\"",\""type\"":\""text\"",\""maxLength\"":40},{\""name\"":\""ctaText\"",\""type\"":\""text\"",\""maxLength\"":22},{\""name\"":\""cta2Text\"",\""type\"":\""text\"",\""maxLength\"":22},{\""name\"":\""description1\"",\""type\"":\""text\"",\""maxLength\"":25},{\""name\"":\""sublineRichText\"",\""type\"":\""richtext\"",\""maxLength\"":70},{\""name\"":\""finePrintRichText\"",\""type\"":\""richtext\"",\""maxLength\"":44},{\""name\"":\""ctaUrl\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""image1Url\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""image1Alt\"",\""type\"":\""text\"",\""maxLength\"":100}]\n\n## Outline\nHL: Restore balance to the realm of Lorcana | SL: Defend the throne from darkness with the Reign of Jafar set. | CTA: Order now\n""
+      }
+    ],
+    ""timestamp"": ""2025-08-26T16:37:17.536Z""
+  },
+  {
+    ""moduleId"": ""4"",
+    ""prompts"": [
+      {
+        ""role"": ""system"",
+        ""content"": ""\n# Content Generation Task\n\n## Role\nYou are an expert email copywriter trained in clear, impactful and concise content for an email layout component based on a provided outline, layout details, and additional context. Follow the instructions carefully to ensure the content is unique, engaging, polished, professional and aligned with the overall email strategy.\n\n## General Requirements\n1. Adhere to Layout Schema: The content must strictly follow the provided layout schema. Do not alter the structure, remove elements, or change element names\n2. Ensure each 'text' and 'richtext' element's content is within its specified max-length (this is a hard limit). Aim to fill the available space with suitable content\n3. Avoid repetition and do not repeat or reuse phrases to keep the email engaging and varied\n4. Use sentence case for all generated content: capitalize ONLY the first word of each sentence and proper nouns (brands, names, people) only, even in CTA and title elements\n5. Do not use more than one exclamation mark per module. 1 is not a target but a maximum\n6. No emojis unless explicitly stated\n7. Module 0 is always subject line and preheader; Module 1 is always an attention-grabbing hero module\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Data Type Handling\nFor elements with data type \""text\"":\n- Generate suitable text content, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- CTA elements should be concise and actionable, with a maximum of 3 words\n\nFor elements with data type \""richtext\"":\n- Generate suitable text content and format using Markdown syntax, taking into account the type, tone, maxLength and avoiding generic stock phrases, and add a value property containing this text\n- Use newlines if necessary\n- NEVER use bold markdown syntax\n- NEVER use single-asterisk italics or lists\n- NEVER add links unless they have been requested in the outline\n\nFor each element of type \""image\""\n- Generate a suitable concise search prompt to find a relevant image, and add a value property containing this search prompt\n- This value should be short and uniquely distinct, ensuring no two search prompts are exactly or even nearly the same\n\nDo not include any explanations, notes, or additional text outside of the JSON structure.\n\n## Input/output format example\n\n**Input:**\nOutline: \""Hero Section: Introducing our new summer collection with vibrant styles\""\n\nElement Requirements:\n[\n  {\n    \""name\"": \""headline\"",\n    \""type\"": \""text\"",\n    \""maxLength\"": 50\n  },\n  {\n    \""name\"": \""subline\"",\n    \""type\"": \""text\"", \n    \""maxLength\"": 100\n  },\n  {\n    \""name\"": \""descriptionRichText\"",\n    \""type\"": \""richtext\"",\n    \""maxLength\"": 200\n  }\n]\n\n**Output:**\n{\n  \""headline\"": \""Content of the headline goes here\"",\n  \""subline\"": \""Content of the subline goes here\"",\n  \""descriptionRichText\"": \""For richtext elements\\nUse newlines if necessary\""\n}\n""
+      },
+      {
+        ""role"": ""user"",
+        ""content"": ""\n## Content Guidelines\n\n## Tone of Voice\nApply a **friendly** tone consistently across all generated text to maintain a uniform style throughout the email\n\n## List of elements\n[{\""name\"":\""headline\"",\""type\"":\""text\"",\""maxLength\"":35},{\""name\"":\""ctaText\"",\""type\"":\""text\"",\""maxLength\"":20},{\""name\"":\""cta1Text\"",\""type\"":\""text\"",\""maxLength\"":30},{\""name\"":\""cta2Text\"",\""type\"":\""text\"",\""maxLength\"":30},{\""name\"":\""title1\"",\""type\"":\""text\"",\""maxLength\"":25},{\""name\"":\""title2\"",\""type\"":\""text\"",\""maxLength\"":25},{\""name\"":\""title3\"",\""type\"":\""text\"",\""maxLength\"":25},{\""name\"":\""title4\"",\""type\"":\""text\"",\""maxLength\"":25},{\""name\"":\""sublineRichText\"",\""type\"":\""richtext\"",\""maxLength\"":120},{\""name\"":\""description1RichText\"",\""type\"":\""richtext\"",\""maxLength\"":115},{\""name\"":\""description2RichText\"",\""type\"":\""richtext\"",\""maxLength\"":115},{\""name\"":\""image1Url\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""image2Url\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""ctaUrl\"",\""type\"":\""url\"",\""maxLength\"":100},{\""name\"":\""image1Alt\"",\""type\"":\""text\"",\""maxLength\"":200},{\""name\"":\""image2Alt\"",\""type\"":\""text\"",\""maxLength\"":200}]\n\n## Outline\nHL: Top-shelf hits you can't pass up | SL: Swing for the fences with these iconic collectibles. | CTA: Bid now\n""
+      }
+    ],
+    ""timestamp"": ""2025-08-26T16:37:17.536Z""
+  }
+]","{
+  ""modules"": [
+    {
+      ""id"": ""0"",
+      ""elements"": [
+        {
+          ""name"": ""subjectLine"",
+          ""value"": ""Stack your lineup with big-league cards""
+        },
+        {
+          ""name"": ""preHeader"",
+          ""value"": ""Scout baseball's finest, plus more must-have collectibles.""
+        }
+      ]
+    },
+    {
+      ""id"": ""1"",
+      ""module_type"": ""Email Hero Module"",
+      ""module_type_view"": ""Marketing Image Fullbleed"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""value"": ""2025 Topps brings the heat""
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""value"": ""Shop now""
+        },
+        {
+          ""name"": ""description1"",
+          ""value"": ""Lorem Ipsum""
+        },
+        {
+          ""name"": ""cta1Text"",
+          ""value"": ""Let's go""
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""value"": ""The wait is finally over for the highly anticipated Baseball Series 2 release. Don’t miss the chance to pull modern legends and rising stars.""
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""value"": """"
+        },
+        {
+          ""name"": ""cta1Url"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/e/sports-fan-shop/sports-trading-card-new-releases"",
+              ""l10n"": {
+                ""sourceLocale"": ""en"",
+                ""translations"": []
+              },
+              ""id"": ""39b78bcf-da42-46cb-be6a-9aba29b1d1e1""
+            }
+          }
+        },
+        {
+          ""name"": ""image1Url"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/e/sports-fan-shop/sports-trading-card-new-releases"",
+              ""l10n"": {
+                ""sourceLocale"": ""en"",
+                ""translations"": []
+              },
+              ""id"": ""5fa7c9d6-d326-4b0a-935d-5f3ee288441e""
+            }
+          }
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""value"": ""A Manny Machado Heavy Lumber trading card, a 2025 Topps Baseball Series 2 trading card blaster box, and Washington Nationals' James Wood and Dylan Crews trading card sit in white tiles against a burgundy background. The eBay logo is in the upper left corner.""
+        }
+      ]
+    },
+    {
+      ""id"": ""2"",
+      ""module_type"": ""Email Banner Image"",
+      ""module_type_view"": ""Lifestyle Left River"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""value"": ""Grails with a legacy""
+        },
+        {
+          ""name"": ""ctaText"",
+          ""value"": ""Bid now""
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""value"": ""Shop now""
+        },
+        {
+          ""name"": ""description1"",
+          ""value"": ""Exclusive items await""
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""value"": ""Bring home elite collectibles from the Goldin 100.""
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""value"": """"
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://goldin.co/buy/?Auctions=202505-0919-4006-a0ab510c-b1a9-46c6-9b67-a96fc7cd6d34"",
+              ""l10n"": {
+                ""sourceLocale"": ""en"",
+                ""translations"": []
+              },
+              ""id"": ""017a64a5-e05b-4a93-b8ed-24b1e470e525""
+            }
+          }
+        },
+        {
+          ""name"": ""image1Url"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://goldin.co/buy/?Auctions=202505-0919-4006-a0ab510c-b1a9-46c6-9b67-a96fc7cd6d34"",
+              ""l10n"": {
+                ""sourceLocale"": ""en"",
+                ""translations"": []
+              },
+              ""id"": ""00d0dd51-7634-4094-a7f4-de90dddc8ff8""
+            }
+          }
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""value"": ""A 1939 CGC graded DC Superman number 1 comic, the Derek Jeter 'Mr. November' 2001 Game 4 World Series baseball, and a 2009 PSA graded UD Exquisite Collection LeBron James and Kobe Bryant trading card against a mustard yellow background.""
+        }
+      ]
+    },
+    {
+      ""id"": ""3"",
+      ""module_type"": ""Email Banner Image"",
+      ""module_type_view"": ""Lifestyle Right River"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""value"": ""Restore balance to the realm of Lorcana""
+        },
+        {
+          ""name"": ""ctaText"",
+          ""value"": ""Order now""
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""value"": ""Shop now""
+        },
+        {
+          ""name"": ""description1"",
+          ""value"": ""Venture into adventure""
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""value"": ""Defend the throne from darkness with the Reign of Jafar set.""
+        },
+        {
+          ""name"": ""finePrintRichText"",
+          ""value"": """"
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/e/toys/card-game-new-arrivals"",
+              ""l10n"": {
+                ""sourceLocale"": ""en"",
+                ""translations"": []
+              },
+              ""id"": ""c9d4eb4a-b946-4288-aa87-eb0dfd7256f9""
+            }
+          }
+        },
+        {
+          ""name"": ""image1Url"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/e/toys/card-game-new-arrivals"",
+              ""l10n"": {
+                ""sourceLocale"": ""en"",
+                ""translations"": []
+              },
+              ""id"": ""9376c008-6bcb-4dc2-b8e7-fb88888fabdd""
+            }
+          }
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""value"": ""A Disney Lorcana Reign of Jafar booster box against a bright red background.""
+        }
+      ]
+    },
+    {
+      ""id"": ""4"",
+      ""module_type"": ""Email Item Tiles"",
+      ""module_type_view"": ""Categories 2UP"",
+      ""elements"": [
+        {
+          ""name"": ""headline"",
+          ""value"": ""Top-shelf hits you can't pass up""
+        },
+        {
+          ""name"": ""ctaText"",
+          ""value"": ""Bid now""
+        },
+        {
+          ""name"": ""cta1Text"",
+          ""value"": ""Shop now""
+        },
+        {
+          ""name"": ""cta2Text"",
+          ""value"": ""Shop now""
+        },
+        {
+          ""name"": ""title1"",
+          ""value"": ""Nothing but no. 23""
+        },
+        {
+          ""name"": ""title2"",
+          ""value"": ""Lock in MVP-level cards""
+        },
+        {
+          ""name"": ""title3"",
+          ""value"": ""Lorem Ipsum""
+        },
+        {
+          ""name"": ""title4"",
+          ""value"": ""Lorem Ipsum""
+        },
+        {
+          ""name"": ""sublineRichText"",
+          ""value"": ""Swing for the fences with these iconic collectibles.""
+        },
+        {
+          ""name"": ""description1RichText"",
+          ""value"": ""Don’t miss legendary Michael Jordan finds at the Upper Deck auction. Ends 6/22.""
+        },
+        {
+          ""name"": ""description2RichText"",
+          ""value"": ""Find rarities at the 4 Sharp Corners Select Showcase. Ends 6/29.""
+        },
+        {
+          ""name"": ""image1Url"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/e/sports-fan-shop/collectibles-auction-hub"",
+              ""l10n"": {
+                ""sourceLocale"": ""en"",
+                ""translations"": []
+              },
+              ""id"": ""9c56a381-396d-4722-9dea-49ab75d358c7""
+            }
+          }
+        },
+        {
+          ""name"": ""image2Url"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/e/sports-fan-shop/collectibles-auction-hub"",
+              ""l10n"": {
+                ""sourceLocale"": ""en"",
+                ""translations"": []
+              },
+              ""id"": ""688877e7-4b56-43bd-aefe-03446919b589""
+            }
+          }
+        },
+        {
+          ""name"": ""ctaUrl"",
+          ""value"": {
+            ""subtype"": ""url"",
+            ""params"": {
+              ""url"": ""https://www.ebay.com/e/sports-fan-shop/collectibles-auction-hub"",
+              ""l10n"": {
+                ""sourceLocale"": ""en"",
+                ""translations"": []
+              },
+              ""id"": ""212bdc4e-9199-403a-a891-0b1cd22326b5""
+            }
+          }
+        },
+        {
+          ""name"": ""image1Alt"",
+          ""value"": ""A pair of Air Jordan Retro 11 'Concord' sneakers signed by Michael Jordan and Michael Jordan's  signed and framed Chicago Bulls original champion rookie jersey against a burgundy background.""
+        },
+        {
+          ""name"": ""image2Alt"",
+          ""value"": ""A PSA graded 2000 Upper Deck Gold Reserve Tom Brady trading card and a PSA graded 2011 Fleer Retro Michael Jordan trading card against a coral background.""
+        }
+      ]
+    }
+  ]
+}",recO58qelmsew1Uaw
