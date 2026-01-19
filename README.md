@@ -14,14 +14,15 @@ npm run build               # Bundle for deployment
 
 ## Commands
 
-| Command             | Description                        |
-| ------------------- | ---------------------------------- |
-| `npm test`          | Run unit tests with mocks          |
-| `npm run test:watch`| Run tests in watch mode            |
-| `npm run local`     | Run against real Airtable API      |
-| `npm run local:csv` | Run against local CSV files        |
-| `npm run build`     | Bundle for Airtable deployment     |
-| `npm run watch`     | Bundle with auto-rebuild           |
+| Command              | Description                     |
+| -------------------- | ------------------------------- |
+| `npm test`           | Run unit tests with mocks       |
+| `npm run test:watch` | Run tests in watch mode         |
+| `npm run local`      | Run against real Airtable API   |
+| `npm run local:csv`  | Run against local CSV files     |
+| `npm run download`   | Download Airtable tables as CSV |
+| `npm run build`      | Bundle for Airtable deployment  |
+| `npm run watch`      | Bundle with auto-rebuild        |
 
 ## Project Structure
 
@@ -79,13 +80,19 @@ CSV_AUTO_SAVE=false
 
 ## CSV Testing
 
-For fast iteration without API calls:
+Download your Airtable tables as CSV files:
+
+```bash
+npm run download
+```
+
+This creates CSV files in `data/` directory (one file per table). Then run:
 
 ```bash
 npm run local:csv
 ```
 
-Place CSV files in `data/` directory. Filename becomes table name:
+CSV files use the table name as filename. Format:
 
 ```csv
 id,Name,Status,Priority
@@ -96,39 +103,41 @@ rec002,Task 2,Completed,Medium
 ## Utility Functions
 
 ```typescript
-import { findDuplicates, generateTableReport, searchAllTables } from './utils';
+import { findDuplicates, generateTableReport, searchAllTables } from "./utils";
 
 // Find duplicates by field
-await findDuplicates(base, 'Tasks', 'Email', logger);
+await findDuplicates(base, "Tasks", "Email", logger);
 
 // Generate table report
-await generateTableReport(base, 'Tasks', ['Name', 'Status'], logger);
+await generateTableReport(base, "Tasks", ["Name", "Status"], logger);
 
 // Search across all tables
-await searchAllTables(base, 'searchTerm', logger);
+await searchAllTables(base, "searchTerm", logger);
 ```
 
 ## Writing Tests
 
 ```typescript
-import { MockBase, MockTable, MockRecord, MockLogger } from './__mocks__';
+import { MockBase, MockTable, MockRecord, MockLogger } from "./__mocks__";
 
-it('should process records', async () => {
-  const records = [new MockRecord('rec001', { Name: 'Task', Status: 'Pending' })];
-  const table = new MockTable('tbl001', 'Tasks', records);
+it("should process records", async () => {
+  const records = [
+    new MockRecord("rec001", { Name: "Task", Status: "Pending" }),
+  ];
+  const table = new MockTable("tbl001", "Tasks", records);
   const base = new MockBase([table]);
   const logger = new MockLogger();
 
   await runScript(base, logger);
 
-  expect(logger.hasLog('Script completed')).toBe(true);
+  expect(logger.hasLog("Script completed")).toBe(true);
 });
 ```
 
 ## Troubleshooting
 
-| Error | Solution |
-| ----- | -------- |
-| `AUTHENTICATION_REQUIRED` | Check API token is complete (~60-80 chars starting with `pat`) |
-| `Table not found` | Verify exact table name (case-sensitive) |
-| `Could not auto-discover tables` | Add `schema.bases:read` scope to token |
+| Error                            | Solution                                                       |
+| -------------------------------- | -------------------------------------------------------------- |
+| `AUTHENTICATION_REQUIRED`        | Check API token is complete (~60-80 chars starting with `pat`) |
+| `Table not found`                | Verify exact table name (case-sensitive)                       |
+| `Could not auto-discover tables` | Add `schema.bases:read` scope to token                         |
